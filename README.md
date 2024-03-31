@@ -1,62 +1,80 @@
 ![eisbison banner](./Images/TOR_logo.png)
-<p align="center"><a href="https://github.com/Eisbison/TheOtherRoles/releases/"><img src="https://badgen.net/github/release/eisbison/theotherroles"></a></p>
+<p align="center"><a href="https://github.com/Eisbison/TheOtherRoles/releases/"><img src="https://badgen.net/github/release/eisbison/theotherroles"></a>
 
 
-This mod is not affiliated with Among Us or Innersloth LLC, and the content contained therein is not endorsed or otherwise sponsored by Innersloth LLC. Portions of the materials contained herein are property of Innersloth LLC. © Innersloth LLC.</p>
+
+</p>
 <p align="center">
-  To other mod devs: for usage of our code, please read and respect the <a href="#license">license</a></p>
+ このModをあまりフォークしないでください理由は、コードをアップデートしてることが少ないからです。また、フォークしたいときは公式ディスコ―ドに行って、ゆうの実況にDMしてください</p>
+<p>旧バージョンを使いたい場合はhttps://github.com/yuunozikkyou/TheOtherRoles-JapaneseEdition このリンクを踏んでください</p>
 
-[![Discord](./Images/TOR_server.png)](https://discord.gg/77RkMJHWsM)
+
+このMODはAmong UsまたInnersloth LLCとは無関係であり、そこに含まれるコンテンツはInnersloth LLCによって支持または後援されているものではありません。ここに含まれる素材の一部は Innersloth LLC の所有物です。© Innersloth LLC.また、TheOtherRoles等とも関係ありません</p>
+<p align="center">
+  他のMOD開発者: 私たちのコードを使用する場合は、次のセクションを読んで尊重してください。 <a href="#license">license</a></p>
+<p align="center">
+ また今、カスタムスキンハットの翻訳方法がわからないので公式ディスコ―ド等で教えてくれるとありがたいです
+  <p align="center">
+
+   <p align="center">
+  Help！！現在、なぜかAmong Usが起動できず、TOR JPの開発等ができません。</p>
+     <p align="center">
+ そこで、TOR JPを遊んでる皆さんに対処法を教えていただきたいです。</p>
+
+  <p align="center">
+ 下の画像をクリックし、Googleホームに飛びます</p>
+
+ [Googleform](./Images/forms_2020q4_48dp.png)]([https://discord.gg/yBuPQGahha](https://docs.google.com/forms/d/e/1FAIpQLScHrzInlkPx7_jgriFl_cXqz48o1TvniV1JvK-Ei_g4y2xQaA/viewform?usp=pp_url))
+  
+  <p align="center">
+  下の画像をクリックすることでTORJP最新版に対応したディスコ―ドのサーバーに飛べます</p>
+
+[![Discord](./Images/TOR_server.png)](https://discord.gg/yBuPQGahha)
+
+[![Discord](./Images/icon_theotherrolesjpedition.png)]
+
 ![eisbison infographic](./Images/TOR_Roles.png)
 
 
 # The Other Roles
 
-The **The Other Roles** is a mod for [Among Us](https://store.steampowered.com/app/945360/Among_Us) which adds many new roles, new [Settings](#settings) and new [Custom Hats](#custom-hats) to the game.
+The Other Rolesは [Among Us](https://store.steampowered.com/app/945360/Among_Us) のMODで、ゲームに多くの [新しいロール](#settings) 、 [カスタムスキンハット](#custom-hats) を追加します。さらに多くのロールがもうすぐ登場します。:)
 Even more roles are coming soon. :)
 
-| Impostor | Crewmate | Neutral | Modifier | Gamemode |
+| インポスター | クルーメイト | 第三陣営 | オプション | ゲームモード |
 |----------|-------------|-----------------|----------------|----------------|
-| [Godfather (Mafia)](#mafia) | [Mayor](#mayor) | [Jester](#jester) | [Bloody](#bloody) | [Classic](#roles) |
-| [Mafioso (Mafia)](#mafia) | [Engineer](#engineer) | [Arsonist](#arsonist) | [Anti Teleport](#anti-teleport) | [Guesser Modifier](#guesser-modifier) |
-| [Janitor (Mafia)](#mafia) | [Sheriff](#sheriff) | [Jackal](#jackal) | [Tie Breaker](#tie-breaker) | [Hide 'n' Seek](#hide-n-seek) |
-| [Morphling](#morphling) | [Deputy](#deputy) | [Sidekick](#sidekick) | [Bait](#bait) | [Vanilla Hide 'n' Seek](https://www.innersloth.com/new-game-mode-hide-n-seek-is-here-emergency-meeting-35/) |
-| [Camouflager](#camouflager) | [Lighter](#lighter) | [Vulture](#vulture) | [Lovers](#lovers) | [PropHunt](#prophunt)|
-| [Vampire](#vampire) | [Detective](#detective) | [Lawyer](#lawyer) | [Sunglasses](#sunglasses) |
-| [Eraser](#eraser) | [Time Master](#time-master) | [Prosecutor](#prosecutor) | [Mini](#mini) |
-| [Trickster](#trickster) | [Medic](#medic) | [Pursuer](#pursuer) | [VIP](#vip) |
-| [Cleaner](#cleaner) | [Swapper](#swapper) | [Thief](#thief) | [Invert](#invert) |
-| [Warlock](#warlock) | [Seer](#seer) |  | [Chameleon](#chameleon) |
-| [Bounty Hunter](#bounty-hunter) | [Hacker](#hacker) |  | [Shifter](#shifter)
-| [Witch](#witch) | [Tracker](#tracker) |  |  |
-| [Ninja](#ninja) | [Snitch](#snitch) |  |  |
-| [Bomber](#bomber) | [Spy](#spy) |  |  |
-| [Evil Guesser](#guesser) | [Portalmaker](#portalmaker) |  |  |
-|  | [Security Guard](#security-guard) |  |  |
-|  | [Medium](#medium) |  |  |
-|  | [Trapper](#trapper) |  |  |
-|  | [Nice Guesser](#guesser) |  |  |
+| [ゴットファーザー (マフィア)](#mafia) | [メイヤー](#mayor) | [ジェスター](#jester) | [血まみれ](#bloody) | [クラシック](#roles) |
+| [マフィア (マフィア)](#mafia) | [エンジニア](#engineer) | [アーソニスト](#arsonist) | [アンチテレポーター](#anti-teleport) | [ゲッサーモード](#guesser-modifier) |
+| [ジャニター (マフィア)](#mafia) | [シェリフ](#sheriff) | [ジャッカル](#jackal) | [タイブレーカー](#tie-breaker) | [かくれんぼ](#hide-n-seek) |
+| [モーフィング](#morphling) | [代理人](#deputy) | [サイドキック](#sidekick) | [ベイト](#bait) | [バニラのかくれんぼ](https://www.innersloth.com/new-game-mode-hide-n-seek-is-here-emergency-meeting-35/) |
+| [カモフラージャー](#camouflager) | [ライター](#lighter) | [ヴァルチャー](#vulture) | [ラバーズ](#lovers) |
+| [ヴァンパイア](#vampire) | [探偵](#detective) | [弁護士](#lawyer) | [サングラス](#sunglasses) |
+| [イレイサー](#eraser) | [タイムマスター](#time-master) | [検察官](#prosecutor) | [ミニ](#mini) |
+| [トリックスター](#trickster) | [メディック](#medic) | [追跡者](#pursuer) | [VIP](#vip) |
+| [クリーナー](#cleaner) | [スワッパー](#swapper) | [泥棒](#thief) | [反転](#invert) |
+| [裏切者](#warlock) | [シーア](#seer) |  | [カメレオン](#chameleon) |
+| [バウンティーハンター](#bounty-hunter) | [ハッカー](#hacker) |  | [シフター](#shifter)
+| [ウィッチ](#witch) | [トラッカー](#tracker) |  |  |
+| [ニンジャ](#ninja) | [スニッチ](#snitch) |  |  |
+| [ボンバー](#bomber) | [スパイ](#spy) |  |  |
+| [イビルゲッサー](#guesser) | [ポートメーカー](#portalmaker) |  |  |
+|  | [ガードマン](#security-guard) |  |  |
+|  | [ミディアム](#medium) |  |  |
+|  | [トラッパー](#trapper) |  |  |
+|  | [ナイスゲッサー](#guesser) |  |  |
 
-The [Role Assignment](#role-assignment) section explains how the roles are being distributed among the players.
+The [Role Assignment](#role-assignment) sections explains how the roles are being distributed among the players.
 
-# Releases
+# TheOtherRolesのダウンロード
 | Among Us - Version| Mod Version | Link |
 |----------|-------------|-----------------|
-| 2024.3.5s| v4.5.2| [Download](https://github.com/TheOtherRolesAU/TheOtherRoles/releases/download/v4.5.2/TheOtherRoles.zip)
-| 2023.11.28s| v4.5.1| [Download](https://github.com/TheOtherRolesAU/TheOtherRoles/releases/download/v4.5.1/TheOtherRoles.zip)
-
+| 2023.07.12s| v4.3.3| [Download](https://github.com/Eisbison/TheOtherRoles/releases/download/v4.3.3/TheOtherRoles.zip)
+| 2023.03.28s| v4.3.2| [Download](https://github.com/Eisbison/TheOtherRoles/releases/download/v4.3.2/TheOtherRoles.zip)
 <details>
   <summary>Click to show older versions</summary>
   
 | Among Us - Version| Mod Version | Link |
 |----------|-------------|-----------------|
-| 2023.11.28s| v4.5.0| [Download](https://github.com/TheOtherRolesAU/TheOtherRoles/releases/download/v4.5.0/TheOtherRoles.zip)
-| 2023.07.12s| v4.4.2| [Download](https://github.com/TheOtherRolesAU/TheOtherRoles/releases/download/v4.4.2/TheOtherRoles.zip)
-| 2023.07.12s| v4.4.1| [Download](https://github.com/TheOtherRolesAU/TheOtherRoles/releases/download/v4.4.1/TheOtherRoles.zip)
-| 2023.07.12s| v4.4.0| [Download](https://github.com/TheOtherRolesAU/TheOtherRoles/releases/download/v4.4.0/TheOtherRoles.zip)
-| 2023.07.12s| v4.3.4| [Download](https://github.com/Eisbison/TheOtherRoles/releases/download/v4.3.4/TheOtherRoles.zip)
-| 2023.07.12s| v4.3.3| [Download](https://github.com/Eisbison/TheOtherRoles/releases/download/v4.3.3/TheOtherRoles.zip)
-| 2023.03.28s| v4.3.2| [Download](https://github.com/Eisbison/TheOtherRoles/releases/download/v4.3.2/TheOtherRoles.zip)
 | 2023.03.28s| v4.3.1| [Download](https://github.com/Eisbison/TheOtherRoles/releases/download/v4.3.1/TheOtherRoles.zip)
 | 2023.02.28s| v4.3.0| [Download](https://github.com/Eisbison/TheOtherRoles/releases/download/v4.3.0/TheOtherRoles.zip)
 | 2022.12.14s| v4.2.1| [Download](https://github.com/Eisbison/TheOtherRoles/releases/download/v4.2.1/TheOtherRoles.zip)
@@ -132,49 +150,6 @@ The [Role Assignment](#role-assignment) section explains how the roles are being
 <details>
   <summary>Click to show the Changelog</summary>
   
- **Version 4.5.2**
-- Updated to Among Us version 2024.3.5s (various small / "long" features and bugfixes)
-- Updated BepInEx dependency to 688
-- Added a new feature: Stop the game start (With an option to allow any player to stop it)
-- Added a new option (guesser mode): Sidekick is always guesser
-- Fixed the Arsonist Win - death reasons for already dead players are no longer replaced 
-- Changed the implementation of the Detective footprints - Improved performance can be expected
-- Changed the medic shield: Is now also displayed in meetings to players who can see it with brackets around the name
-
-  
-**Version 4.5.1**
-- Fix a bug that lead to Props not being able to use the disguise button
-
-**Version 4.5.0**
-- Updated to Among Us version 2023.11.28 (with the new map, Fungle)
-- Added a new feature: Show Vents on Map (toggle in your local options)
-- Added a new kill distance: Very Short (thanks twix)
-- Added a feature to change the gamemode in the settings: `/gm <gamemode>` (host only)
-- Fixed a bug where Pet visibility was sometimes wron
-- Fixed the HatLoader - testing hats should work again (thanks EnoPM)
-- Changed the HatLoader - loading the hats does not require a restart of the mod anymore
-- Changed the ModUpdater (thanks EnoPM)
-- Changed the Vampire: Kills will be delayed a bit longer if the target is using a ladder, platform or zipline
-- Note: Compatibility with Submerged and LevelImposter is not tested yet.
-
-**Version 4.4.2**
-- Added 10 new colors and adapted some existing ones (thanks to Avlona & Listoric for sorting our colors!)
-- Added a message of the day feature in the main menu. Look out for interesting news and lame jokes!
-
-**Version 4.4.1**
-- Fixed a bug where PropHunt buttons did not work for the Hunters after watching the intro cutscene.
-
-**Version 4.4.0**
-- Added a new gamemode, PropHunt. Players can disguise as objects on the map
-- Changed Lighter and Darker colors: L/D are no longer random, but rather assigned in alternating order.
-
-**Version 4.3.4**
-- Updated BepInEx dependency to 671
-- Fixed compatibility to Submerged (not thouroughly tested)
-- Fixed a bug where the death reason of a guessed shifter was incorrectly displayed as "shifted xy"
-- Make it possible to disable the Mod-Updater (see [details](#gcerror) ), to circumvent a crash at startup with a GC-Error
-- Fixed the hats in freeplay partially
-
 **Version 4.3.3**
 - Updated to Among Us version 2023.07.12
 - Fixed an issue where the swap icon of a swapper guesser would be in front of the witch icon on a spelled player 
@@ -820,26 +795,6 @@ docker run -d -p 22023:22023/udp --env IMPOSTOR_AntiCheatEnabled=false --env IMP
 
 
 # Credits & Resources
-Team:
-Mallöris    K3ndo    Bavari    Gendelo
-
-Former Team Members:
-Eisbison (GOAT)    Thunderstorm584    EndOfFile
-
-Additional Devs:
-EnoPM    twix    NesTT
-
-Github Contributors:
-Alex2911    amsyarasyiq    MaximeGillot
-Psynomit    probablyadnf    JustASysAdmin
-
-[Discord](https://discord.gg/77RkMJHWsM]Discord) Moderators:</b>
-Draco Cordraconis    Streamblox (formerly)
-Thanks to all our discord helpers!
-
-Thanks to miniduikboot & GD for hosting modded servers (and so much more)
-
-
 [OxygenFilter](https://github.com/NuclearPowered/Reactor.OxygenFilter) - For all the versions between v2.3.0 and v2.6.1, we were using the OxygenFilter for automatic deobfuscation\
 [Reactor](https://github.com/NuclearPowered/Reactor) - The framework used for all versions before v2.0.0\
 [BepInEx](https://github.com/BepInEx) - Used to hook to game functions\
@@ -859,12 +814,10 @@ Thanks to miniduikboot & GD for hosting modded servers (and so much more)
 [Crowded-Mod](https://github.com/CrowdedMods/CrowdedMod) - Our implementation for 10+ player lobbies were inspired by the one from the **Crowded Mod Team**\
 [Goose-Goose-Duck](https://store.steampowered.com/app/1568590/Goose_Goose_Duck) - Idea for the Vulture role came from **Slushiegoose**\
 [TheEpicRoles](https://github.com/LaicosVK/TheEpicRoles) - Idea for the first kill shield (partly) and the tabbed option menu (fully + some code), by **LaicosVK** **DasMonschta** **Nova**\
-[Ninja](#ninja), [Thief](#thief), [Lawyer](#lawyer) / [Pursuer](#pursuer), [Deputy](#deputy), [Portalmaker](#portalmaker), [Guesser Modifier](#guesser-modifier) - Idea: [K3ndo](https://github.com/K3ndoo) ; Developed by [Gendelo](https://github.com/gendelo3) & [Mallöris](https://github.com/Mallaris) \
-[ugackMiner53](https://github.com/ugackMiner53/PropHunt) - Idea and core code for the Prop Hunt game mode
+[Ninja](#ninja), [Thief](#thief), [Lawyer](#lawyer) / [Pursuer](#pursuer), [Deputy](#deputy), [Portalmaker](#portalmaker), [Guesser Modifier](#guesser-modifier) - Idea: [K3ndo](https://github.com/K3ndoo) ; Developed by [Gendelo](https://github.com/gendelo3) & [Mallöris](https://github.com/Mallaris)
 
 # Settings
 The mod adds a few new settings to Among Us (in addition to the role settings):
-- **Any Player Can Stop The Start:** If turned off, only the host can stop the game start. If on, all players can do it. Non-hosts stopping the start will send a chat message indicating who stopped it.
 - **Number of Crewmates:** The number of Crewmate roles can be set inside a lobby.
 - **Fill Crewmate Roles (Ignores Min/Max):** Everyone will get a role, even if the settings say there would be plain Crewmates (needs enough roles over 0%).
 - **Number of Neutrals:** The number of Neutral roles can be set inside a lobby.
@@ -950,9 +903,6 @@ Here are a few instructions, on how to create a custom hat:
 - **Submission:** If you got a hat design, you can submit it on our [Discord server](https://discord.gg/77RkMJHWsM). We'll look at all the hats and add all the good ones to the game.
 
 # Colors
-Note: Lighter and Darker colors are no longer based on the players color. Instead they are assigned alternatingly, s.t. they are always balanced in a lobby.
-
-A big thank you goes to Avlona & Listoric for sorting the colors in the best possible order (which is surprisingly hard to do)!
 ![TOR Colors](./Images/TOR_colors.jpg)
 
 # Roles
@@ -1596,7 +1546,7 @@ The Time Master won't be affected by the rewind.
 
 ## Medic
 ### **Team: Crewmates**
-The Medic can shield (highlighted by an outline around the player) one player per game, which makes the player unkillable.\ The shield is also shown in the meeting as brackets around the shielded player's name.
+The Medic can shield (highlighted by an outline around the player) one player per game, which makes the player unkillable.\
 The shielded player can still be voted out and might also be an Impostor.\
 If set in the options, the shielded player and/or the Medic will get a red flash on their screen if someone (Impostor, Sheriff, ...) tried to murder them.\
 If the Medic dies, the shield disappears with them.\
@@ -2080,9 +2030,6 @@ can only use them, if the previous player did not use them before)
 -----------------------
 
 # Gamemodes
-Gamemodes can be switched when creating a lobby or inside the lobby by using a command in the chat:
-`/gm <gamemode>`. Use the following gamemodes: `guess` or `gm`,`prophunt` or `ph`, `hidenseek` or `hns`. If `/gm` is used without argument or the argument can't be parsed, the lobby will switch to classic mode.
-
 
 ## Guesser Modifier
 The **Guesser-Gamemode** is an extension to the Classic-Gamemode and gives you a multitude of new options for Guessers.\
@@ -2098,8 +2045,7 @@ Players can additionally have a modifier, if enabled (e.g. Medic Guesser Mini).
 | Number of Neutral Guessers | -
 | Number of Impostor Guessers | -
 | Force Jackal Guesser | If set to "On", the first neutral role who will be Guesser is the Jackal. 
-| Sidekick Is Always Guesser | The converted sidekick will become a guesser | -
-| Force Thief Guesser | If set to "On", the first (or second if Force Jackal Guesser) neutral role who will be Guesser is the Thief.
+| Force Thief Guesser | If set to "On", the first (or second if Force Jackal Guesser) neutral role who will be Guesser is the Thief. 
 | Guessers Can Have A Modifier | -
 | Guesser Number Of Shots | -
 | Guesser Can Shoot Multiple Times Per Meeting | -
@@ -2142,61 +2088,14 @@ Each Hunter action or finished Crew task will lower the timer by a configurable 
 | Kill Cooldown | -                      | Hunter Light Vision | -                    | Hunted Rewind Time | -
 | Hunter Vision | -                      | Hunter Light Punish in Sec | -             | Hunted Shield Number | -
 | Hunted Vision | -                      | Hunter Admin Cooldown | -
-|  | -                       | Hunter Admin Duration | -
-|  | -                        | Hunter Admin Punish In Sec | -
-|  | -                         | Hunter Arrow Cooldown | -
-|  | -                       | Hunter Arrow Duration | -
+| Common Tasks | -                       | Hunter Admin Duration | -
+| Short Tasks | -                        | Hunter Admin Punish In Sec | -
+| Long Tasks | -                         | Hunter Arrow Cooldown | -
+| Timer In Min | -                       | Hunter Arrow Duration | -
 | Task Win Is Possible | -               | Hunter Arrow Punish In Sec | -
 | Finish Tasks Punish In Sec | -
 | Enable Sabotages | -
 | Time The Hunter Needs To Wait | -
-
-## PropHunt
-The **Prop-Gamemode** is a standalone Gamemode where Hunters have to find the disguised players ("Props").\
-The Hunters and Props who are still alive are displayed to everyone in the bottom left corner (similar to the Arsonist display).\
-When the game starts, the Hunter's movement is disabled for x-seconds (depends on the settings), and their screen is blacked out.\
-There is a time-limit for each round, if the timer runs out and at least one Prop is still alive, the remaining Props win.\
-If the Hunters kill all players before the timer runs out the Hunters win.\
-When a Prop dies, they will either join the Hunter team or die (setting).
-
-#### Shared Abilities:
-- Unstuck: By pressing this button, you can travel through walls for a short time. This is needed, because props sometimes get stuck in walls, due to their changed colliders. Don't use it to cheat!
-
-#### Hunter Abilities:
-- Reveal: A random players current prop is revealed to all players for x seconds (according to settings). The timer will be reduced by *punish* s.
-- Mobile Admin table (like Hacker) - Normal Admin table shares the cooldown
-- Find: Display the DangerMeter known from Vanilla HideNSeek for x seconds. The dangerlevel is rising the closer the Hunter gets to the neares prop.  
-#### Prop Abilities:
-- Invisibility: As a disguised Prop, become invisible for x seconds.
-- Speedboost: Move faster for x seconds.
-- Disguise: While near a usable object, press the button to disguise as the displayed object!
-
-**NOTE:**
-- The Report button lights up, but cannot be pressed.
-- Hunters can vent
-- The Kill Button and Vent Button are permanently enabled, so that you cannot use them to check if there is a prop nearby
-- The Kill Button can always be pressed, but you can also miss if no Prop is nearby. The cooldown can be configured for hits and misses seperately.
-- Usable prop objects are: All task consoles as well as many objects (rocks, snowpeople, barriers, beds, tables, ...)
-- Any object on **LevelImposter** maps, that contains `liprop` in its name and has a `SpriteRenderer` (+ Sprite) will be usable as a prop too!
-
-
-### Game Options
-| General | Description | Hunter | Description | Hunted | Description |
-|----------|:-------------:|----------|:-------------:|----------|:-------------:|
-| Map | -                     | Number of Hunters | -                  | Props Become Hunters When Found | -
-| Timer in Min | -            | Initial Blackout Duration | -          | Invisibility Enabled | -
-| Unstuck Cooldown | -        | Kill Cooldown After Miss | -           | Invisibility Cooldown | -
-| Unstuck Duration | -        | Kill Cooldown After Hit | -            | Invisibility Duration | -
-| Hunter Vision | -           | Reveal Prop Cooldown | -               | Speedboost Enabled | -
-| Prop Vision | -             | Reveal Prop Duration | -               | Speedboost Cooldown | -
-|  | -             | Reveal Time Punish | deducted from rem. timer | Speedboost Duration | - 
-|  | -                         |  Hunter Admin Cooldown | - | Speedboost Ratio | Factor with which speed is multiplied 
-|  | -                       | Find Cooldown | -
-|  | -               | Find Duration | -
-
-## GCERROR
-If the error message "Fatal Error in GC - Collecting from unknown thread" stops you from playing the game, you can now disable the mod-updater, which causes this error.
-In order to do this, create a file called `noupdater.txt` in your modded Among Us folder.
 
 # License
 TheOtherRolesAU/TheOtherRoles is licensed under the
