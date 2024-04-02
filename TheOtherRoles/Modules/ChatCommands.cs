@@ -55,7 +55,7 @@ namespace TheOtherRoles.Modules {
                             RPCProcedure.shareGamemode((byte)gameMode);
                             RPCProcedure.shareGamemode((byte)TORMapOptions.gameMode);
                         } else {
-                            __instance.AddChat(CachedPlayer.LocalPlayer.PlayerControl, "Nice try, but you have to be the host to use this feature");
+                            __instance.AddChat(CachedPlayer.LocalPlayer.PlayerControl, "いい試みだが、この機能を使うにはホストでなければならない");
                         }
                         handled = true;
                     }
@@ -74,9 +74,10 @@ namespace TheOtherRoles.Modules {
                         }
                         col = Math.Clamp(col, 0, Palette.PlayerColors.Length - 1);
                         CachedPlayer.LocalPlayer.PlayerControl.SetColor(col);
-                        __instance.AddChat(CachedPlayer.LocalPlayer.PlayerControl, "Changed color succesfully");;
+                        __instance.AddChat(CachedPlayer.LocalPlayer.PlayerControl, "色の変更に成功");;
                     } 
                 }
+
 
                 if (text.ToLower().StartsWith("/tp ") && CachedPlayer.LocalPlayer.Data.IsDead) {
                     string playerName = text.Substring(4).ToLower();

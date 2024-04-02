@@ -10,6 +10,8 @@ using TheOtherRoles.CustomGameModes;
 using static TheOtherRoles.TheOtherRoles;
 using AmongUs.Data;
 using Hazel;
+using System.Threading.Tasks;
+using Rewired;
 
 namespace TheOtherRoles
 {
@@ -42,6 +44,7 @@ namespace TheOtherRoles
             Tracker.clearAndReload();
             Vampire.clearAndReload();
             Snitch.clearAndReload();
+            Homeguard.clearAndReload();
             Jackal.clearAndReload();
             Sidekick.clearAndReload();
             Eraser.clearAndReload();
@@ -369,6 +372,7 @@ namespace TheOtherRoles
             }
         }
 
+        
         public static class Detective {
             public static PlayerControl detective;
             public static Color color = new Color32(45, 106, 165, byte.MaxValue);
@@ -835,7 +839,20 @@ namespace TheOtherRoles
             canKillNearGarlics = CustomOptionHolder.vampireCanKillNearGarlics.getBool();
         }
     }
-
+    public static class Homeguard{
+        public static PlayerControl homeguard;
+        public static Color color = new Color32(184, 251, 79, byte.MaxValue);
+        public static int tasks = 0; // タスク数を0に設定
+            // タスク数を0に設定するメソッド
+        public static void SetTasksToZero()
+        {
+            tasks = 0;
+        }
+        public static void clearAndReload() {
+            homeguard = null;
+        }
+    }
+      
     public static class Snitch {
         public static PlayerControl snitch;
         public static Color color = new Color32(184, 251, 79, byte.MaxValue);

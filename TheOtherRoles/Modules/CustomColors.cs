@@ -25,115 +25,121 @@ namespace TheOtherRoles.Modules {
             List<CustomColor> colors = new List<CustomColor>();
 
             /* Custom Colors, starting with id (for ORDER) 18 */
-            colors.Add(new CustomColor {
-                longname = "Tamarind", //18
+                        colors.Add(new CustomColor {
+                longname = "タマリンド", //18
                 color = new Color32(48, 28, 34, byte.MaxValue),
                 shadow = new Color32(30, 11, 16, byte.MaxValue),
                 isLighterColor = true });
             colors.Add(new CustomColor {
-                longname = "Army", // 19
+                longname = "陸軍", // 19
                 color = new Color32(39, 45, 31, byte.MaxValue),
                 shadow = new Color32(11, 30, 24, byte.MaxValue),
                 isLighterColor = false });
             // 20
-            colors.Add(new CustomColor { longname = "Olive",
+            colors.Add(new CustomColor { longname = "オリーブ",
                                         color = new Color32(154, 140, 61, byte.MaxValue), 
                                         shadow = new Color32(104, 95, 40, byte.MaxValue),
                                         isLighterColor = true });
-            colors.Add(new CustomColor { longname = "Turquoise",
+            colors.Add(new CustomColor { longname = "ターコイズ",
                                         color = new Color32(22, 132, 176, byte.MaxValue), 
                                         shadow = new Color32(15, 89, 117, byte.MaxValue),
                                         isLighterColor = false });
-            colors.Add(new CustomColor { longname = "Mint", 
+            colors.Add(new CustomColor { longname = "ミント", 
                                         color = new Color32(111, 192, 156, byte.MaxValue), 
                                         shadow = new Color32(65, 148, 111, byte.MaxValue),
                                         isLighterColor = true });
-            colors.Add(new CustomColor { longname = "Lavender",
+            colors.Add(new CustomColor { longname = "ラベンダー",
                                         color = new Color32(173, 126, 201, byte.MaxValue), 
                                         shadow = new Color32(131, 58, 203, byte.MaxValue),
                                         isLighterColor = true });
-            colors.Add(new CustomColor { longname = "Nougat",
+            colors.Add(new CustomColor { longname = "ヌガー",
                                         color = new Color32(160, 101, 56, byte.MaxValue), 
                                         shadow = new Color32(115, 15, 78, byte.MaxValue),
                                         isLighterColor = false });
             // 25
-            colors.Add(new CustomColor { longname = "Peach",
+            colors.Add(new CustomColor { longname = "ピーチ",
                                         color = new Color32(255, 164, 119, byte.MaxValue), 
                                         shadow = new Color32(238, 128, 100, byte.MaxValue),
                                         isLighterColor = true });
-            colors.Add(new CustomColor { longname = "Wasabi",
+
+            colors.Add(new CustomColor{ longname = "ゆう色(?)",
+                                        color = new Color32(210,180,140,byte.MaxValue),
+                                        shadow = new Color32(139,69,19,byte.MaxValue),
+                                        isLighterColor = true });
+
+            colors.Add(new CustomColor { longname = "わさび",
                                         color = new Color32(112, 143, 46, byte.MaxValue), 
                                         shadow = new Color32(72, 92, 29, byte.MaxValue),
                                         isLighterColor = false });
-            colors.Add(new CustomColor { longname = "Hot Pink",
+            colors.Add(new CustomColor { longname = "ホットピンク",
                                         color = new Color32(255, 51, 102, byte.MaxValue), 
                                         shadow = new Color32(232, 0, 58, byte.MaxValue),
                                         isLighterColor = true });
-            colors.Add(new CustomColor { longname = "Petrol", 
+            colors.Add(new CustomColor { longname = "ガソリン", 
                                         color = new Color32(0, 99, 105, byte.MaxValue), 
                                         shadow = new Color32(0, 61, 54, byte.MaxValue),
                                         isLighterColor = false });
-            colors.Add(new CustomColor { longname = "Lemon",
+            colors.Add(new CustomColor { longname = "レモン",
                                         color = new Color32(0xDB, 0xFD, 0x2F, byte.MaxValue), 
                                         shadow = new Color32(0x74, 0xE5, 0x10, byte.MaxValue), 
                                         isLighterColor = true });
             // 30
-            colors.Add(new CustomColor { longname = "Signal\nOrange",
+            colors.Add(new CustomColor { longname = "シグナル\nオレンジ",
                                         color = new Color32(0xF7, 0x44, 0x17, byte.MaxValue), 
                                         shadow = new Color32(0x9B, 0x2E, 0x0F, byte.MaxValue),
                                         isLighterColor = true });   
-            colors.Add(new CustomColor { longname = "Teal",
+            colors.Add(new CustomColor { longname = "ティール",
                                         color = new Color32(0x25, 0xB8, 0xBF, byte.MaxValue), 
                                         shadow = new Color32(0x12, 0x89, 0x86, byte.MaxValue),
                                         isLighterColor = true });   
 
-            colors.Add(new CustomColor { longname = "Blurple",
+            colors.Add(new CustomColor { longname = "ブループル",
                                         color = new Color32(61, 44, 142, byte.MaxValue), 
                                         shadow = new Color32(25, 14, 90, byte.MaxValue),
                                         isLighterColor = false });   
 
-            colors.Add(new CustomColor { longname = "Sunrise", 
+            colors.Add(new CustomColor { longname = "日の出", 
                                         color = new Color32(0xFF, 0xCA, 0x19, byte.MaxValue), 
                                         shadow = new Color32(0xDB, 0x44, 0x42, byte.MaxValue),
                                         isLighterColor = true });
-            colors.Add(new CustomColor { longname = "Ice",
+            colors.Add(new CustomColor { longname = "アイス",
                                         color = new Color32(0xA8, 0xDF, 0xFF, byte.MaxValue), 
                                         shadow = new Color32(0x59, 0x9F, 0xC8, byte.MaxValue),
                                         isLighterColor = true });
             // 35
-            colors.Add(new CustomColor { longname = "Fuchsia", //35 Color Credit: LaikosVK
+            colors.Add(new CustomColor { longname = "フクシア", //35 Color Credit: LaikosVK
                                         color = new Color32(164, 17, 129, byte.MaxValue),
                                         shadow = new Color32(104, 3, 79, byte.MaxValue),
                                         isLighterColor = false
             });
-            colors.Add(new CustomColor { longname = "Royal\nGreen", //36
+            colors.Add(new CustomColor { longname = "ロイヤル\nグリーン", //36
                                         color = new Color32(9, 82, 33, byte.MaxValue),
                                         shadow = new Color32(0, 46, 8, byte.MaxValue),
                                         isLighterColor = false
             });
-            colors.Add(new CustomColor { longname = "Slime",
+            colors.Add(new CustomColor { longname = "スライム",
                                         color = new Color32(244, 255, 188, byte.MaxValue),
                                         shadow = new Color32(167, 239, 112, byte.MaxValue),
                                         isLighterColor = false
             });
-            colors.Add(new CustomColor { longname = "Navy", //38
+            colors.Add(new CustomColor { longname = "ネイビー", //38
                                         color = new Color32(9, 43, 119, byte.MaxValue),
                                         shadow = new Color32(0, 13, 56, byte.MaxValue),
                                         isLighterColor = false
             });
-            colors.Add(new CustomColor { longname = "Darkness", //39
+            colors.Add(new CustomColor { longname = "ダーク", //39
                                         color = new Color32(36, 39, 40, byte.MaxValue),
                                         shadow = new Color32(10, 10, 10, byte.MaxValue),
                                         isLighterColor = false
             });
             colors.Add(new CustomColor {
-                longname = "Ocean", //40
+                longname = "オーシャン", //40
                 color = new Color32(55, 159, 218, byte.MaxValue),
                 shadow = new Color32(62, 92, 158, byte.MaxValue),
                 isLighterColor = false
             });
             colors.Add(new CustomColor {
-                longname = "Sundown", // 41
+                longname = "日没", // 41
                 color = new Color32(252, 194, 100, byte.MaxValue),
                 shadow = new Color32(197, 98, 54, byte.MaxValue),
                 isLighterColor = false

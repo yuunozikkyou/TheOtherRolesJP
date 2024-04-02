@@ -6,11 +6,11 @@ using UnityEngine;
 using System;
 using AmongUs.GameOptions;
 using TheOtherRoles.Players;
-using TheOtherRoles.Utilities;
 using static TheOtherRoles.TheOtherRoles;
 using TheOtherRoles.CustomGameModes;
 
-namespace TheOtherRoles.Patches {
+namespace TheOtherRoles.Patches
+{
     [HarmonyPatch(typeof(RoleOptionsCollectionV07), nameof(RoleOptionsCollectionV07.GetNumPerGame))]
     class RoleOptionsDataGetNumPerGamePatch{
         public static void Postfix(ref int __result) {
@@ -144,6 +144,7 @@ namespace TheOtherRoles.Patches {
             crewSettings.Add((byte)RoleId.Hacker, CustomOptionHolder.hackerSpawnRate.getSelection());
             crewSettings.Add((byte)RoleId.Tracker, CustomOptionHolder.trackerSpawnRate.getSelection());
             crewSettings.Add((byte)RoleId.Snitch, CustomOptionHolder.snitchSpawnRate.getSelection());
+            crewSettings.Add((byte)RoleId.Homeguard, CustomOptionHolder.homeguardSpawnRate.getSelection());
             crewSettings.Add((byte)RoleId.Medium, CustomOptionHolder.mediumSpawnRate.getSelection());
             crewSettings.Add((byte)RoleId.Trapper, CustomOptionHolder.trapperSpawnRate.getSelection());
             if (impostors.Count > 1) {
@@ -151,6 +152,7 @@ namespace TheOtherRoles.Patches {
                 crewSettings.Add((byte)RoleId.Spy, CustomOptionHolder.spySpawnRate.getSelection());
             }
             crewSettings.Add((byte)RoleId.SecurityGuard, CustomOptionHolder.securityGuardSpawnRate.getSelection());
+
 
             return new RoleAssignmentData {
                 crewmates = crewmates,
@@ -163,6 +165,11 @@ namespace TheOtherRoles.Patches {
                 maxImpostorRoles = maxImpostorRoles
             };
         }
+
+
+
+
+
 
         private static void assignSpecialRoles(RoleAssignmentData data) {
             // Assign Mafia
@@ -666,3 +673,4 @@ namespace TheOtherRoles.Patches {
 
     }
 }
+

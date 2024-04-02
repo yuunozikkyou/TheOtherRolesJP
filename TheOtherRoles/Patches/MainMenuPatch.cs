@@ -47,7 +47,7 @@ namespace TheOtherRoles.Modules {
             PassiveButton passiveButtonDiscord = buttonDiscord.GetComponent<PassiveButton>();
             
             passiveButtonDiscord.OnClick = new Button.ButtonClickedEvent();
-            passiveButtonDiscord.OnClick.AddListener((System.Action)(() => Application.OpenURL("https://discord.gg/77RkMJHWsM")));
+            passiveButtonDiscord.OnClick.AddListener((System.Action)(() => Application.OpenURL("https://discord.gg/yBuPQGahha")));
 
 
             
@@ -60,7 +60,7 @@ namespace TheOtherRoles.Modules {
 
             var textCreditsButton = creditsButton.transform.GetComponentInChildren<TMPro.TMP_Text>();
             __instance.StartCoroutine(Effects.Lerp(0.5f, new System.Action<float>((p) => {
-                textCreditsButton.SetText("TOR Credits");
+                textCreditsButton.SetText("TOR クレジット");
             })));
             PassiveButton passiveCreditsButton = creditsButton.GetComponent<PassiveButton>();
 
@@ -71,63 +71,66 @@ namespace TheOtherRoles.Modules {
                 if (popUp != null) Object.Destroy(popUp);
                 var popUpTemplate = Object.FindObjectOfType<AnnouncementPopUp>(true);
                 if (popUpTemplate == null) {
-                    TheOtherRolesPlugin.Logger.LogError("couldnt show credits, popUp is null");
+                    TheOtherRolesPlugin.Logger.LogError("エラーによりクレジットが表示されませんでした");
                     return;
                 }
                 popUp = Object.Instantiate(popUpTemplate);
 
                 popUp.gameObject.SetActive(true);
-                string creditsString = @$"<align=""center""><b>Team:</b>
+                string creditsString = @$"<align=""center""><b>TORJP開発者、翻訳者:</b>
+翻訳者:ゆうの実況 開発者:ゆうの実況(ゆうの実況のチャンネル登録よろしくね![https://youtube.com/@yuunozikkyou]youtube[])
+                <b>本家TORチーム:</b>
 Mallöris    K3ndo    Bavari    Gendelo
 
-<b>Former Team Members:</b>
+<b>元チームメンバー:</b>
 Eisbison (GOAT)    Thunderstorm584    EndOfFile
 
-<b>Additional Devs:</b>
+<b>追加開発者:</b>
 EnoPM    twix    NesTT
 
-<b>Github Contributors:</b>
+<b>Githubの貢献者:</b>
 Alex2911    amsyarasyiq    MaximeGillot
 Psynomit    probablyadnf    JustASysAdmin
 
-<b>[https://discord.gg/77RkMJHWsM]Discord[] Moderators:</b>
+<b>[https://discord.gg/yBuPQGahha]Discord[] モデレーター:</b>
 Draco Cordraconis    Streamblox (formerly)
-Thanks to all our discord helpers!
+discordのヘルパーの皆さん、ありがとうございました！
 
-Thanks to miniduikboot & GD for hosting modded servers (and so much more)
-
+miniduikbootとGDに感謝します。
+TheOtherRoles 4..5.2更新　3月13日
+TheOtherRoles JP4.2.1更新　同日
 ";
-                creditsString += $@"<size=60%> <b>Other Credits & Resources:</b>
-OxygenFilter - For the versions v2.3.0 to v2.6.1, we were using the OxygenFilter for automatic deobfuscation
-Reactor - The framework used for all versions before v2.0.0, and again since 4.2.0
-BepInEx - Used to hook game functions
-Essentials - Custom game options by DorCoMaNdO:
-Before v1.6: We used the default Essentials release
-v1.6-v1.8: We slightly changed the default Essentials.
-v2.0.0 and later: As we were not using Reactor anymore, we are using our own implementation, inspired by the one from DorCoMaNdO
-Jackal and Sidekick - Original idea for the Jackal and Sidekick came from Dhalucard
-Among-Us-Love-Couple-Mod - Idea for the Lovers modifier comes from Woodi-dev
-Jester - Idea for the Jester role came from Maartii
-ExtraRolesAmongUs - Idea for the Engineer and Medic role came from NotHunter101. Also some code snippets from their implementation were used.
-Among-Us-Sheriff-Mod - Idea for the Sheriff role came from Woodi-dev
-TooManyRolesMods - Idea for the Detective and Time Master roles comes from Hardel-DW. Also some code snippets from their implementation were used.
-TownOfUs - Idea for the Swapper, Shifter, Arsonist and a similar Mayor role came from Slushiegoose
-Ottomated - Idea for the Morphling, Snitch and Camouflager role came from Ottomated
-Crowded-Mod - Our implementation for 10+ player lobbies was inspired by the one from the Crowded Mod Team
-Goose-Goose-Duck - Idea for the Vulture role came from Slushiegoose
-TheEpicRoles - Idea for the first kill shield (partly) and the tabbed option menu (fully + some code), by LaicosVK DasMonschta Nova
-ugackMiner53 - Idea and core code for the Prop Hunt game mode</size>";
+                creditsString += $@"<size=60%> <b>その他のクレジットとリソース:</b>
+OxygenFilter - v2.3.0からv2.6.1まで、自動難読化処理にOxygenFilterを使用していました。
+Reactor - v2.0.0以前のすべてのバージョン、そして4.2.0以降で使用されているフレームワーク。
+BepInEx - ゲーム関数をフックするために使用。
+Essentials - DorCoMaNdOによるカスタムゲームオプション：
+v1.6以前: デフォルトのEssentialsリリースを使用。
+v1.6-v1.8：デフォルトのEssentialsを少し変更しました。
+v2.0.0以降： Reactorを使用しなくなったため、DorCoMaNdOのものにインスパイアされた独自の実装を使用しています。
+ジャッカルとサイドキック - ジャッカルとサイドキックのオリジナル・アイデアはDhalucardによるものです。
+Among-Us-Love-Couple-Mod - LoversモディファイアのアイデアはWoody-devから。
+Jester - JesterロールのアイデアはMaartiiから。
+ExtraRolesAmongUs - エンジニアとメディックのロールのアイディアはNotHunter101から。また、彼らの実装からいくつかのコードスニペットを使用しました。
+Among-Us-Sheriff-Mod - 保安官のアイディアはWoody-devから。
+TooManyRolesMods - DetectiveとTime MasterのアイデアはHardel-DWから。また、Hardel-DWの実装のコード・スニペットも使われました。
+TownOfUs - Swapper、Shifter、Arsonistと同様のMayorのアイデアはSlushiegooseから。
+Ottomated - Morphling、Snitch、CamouflagerロールのアイデアはOttomatedから。
+Crowded-Mod - 10人以上のロビーの実装はCrowded Mod Teamのものにインスパイアされました。
+Goose-Goose-Duck - ハゲタカ役のアイディアはSlushiegooseから。
+TheEpicRoles - LaicosVK DasMonschta Novaによるファーストキルシールドのアイデア（一部）とタブオプションメニューのアイデア（一部＋コード）。
+ugackMiner53 - Prop Hunt ゲームモードのアイデアとコアコード。</size>";
                 creditsString += "</align>";
 
                 Assets.InnerNet.Announcement creditsAnnouncement = new() {
-                    Id = "torCredits",
+                    Id = "TORJP、TORクレジット",
                     Language = 0,
                     Number = 500,
-                    Title = "The Other Roles\nCredits & Resources",
-                    ShortTitle = "TOR Credits",
+                    Title = "The Other Roles JP\nクレジットとリソース",
+                    ShortTitle = "TORクレジット",
                     SubTitle = "",
                     PinState = false,
-                    Date = "01.07.2021",
+                    Date = "13.03.2024",
                     Text = creditsString,
                 };
                 __instance.StartCoroutine(Effects.Lerp(0.1f, new Action<float>((p) => {

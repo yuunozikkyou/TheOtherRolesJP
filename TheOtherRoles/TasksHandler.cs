@@ -19,9 +19,11 @@ namespace TheOtherRoles {
                     if (playerInfoTask.Complete) CompletedTasks++;
                     TotalTasks++;
                 }
+                
             }
             return Tuple.Create(CompletedTasks, TotalTasks);
         }
+        
 
         [HarmonyPatch(typeof(GameData), nameof(GameData.RecomputeTaskCounts))]
         private static class GameDataRecomputeTaskCountsPatch {
@@ -50,6 +52,10 @@ namespace TheOtherRoles {
                 return false;
             }
         }
-        
+
+        internal class tasks
+        {
+        }
+
     }
 }

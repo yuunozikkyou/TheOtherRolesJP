@@ -19,6 +19,7 @@ using Assets.CoreScripts;
 namespace TheOtherRoles
 {
     public enum RoleId {
+        Homeguard,
         Jester,
         Mayor,
         Portalmaker,
@@ -81,6 +82,7 @@ namespace TheOtherRoles
     enum CustomRPC
     {
         // Main Controls
+
 
         ResetVaribles = 60,
         ShareOptions,
@@ -196,7 +198,7 @@ namespace TheOtherRoles
                     option.updateSelection((int)selection);
                 }
             } catch (Exception e) {
-                TheOtherRolesPlugin.Logger.LogError("Error while deserializing options: " + e.Message);
+                TheOtherRolesPlugin.Logger.LogError("オプションのデシリアライズ中のエラー: " + e.Message);
             }
         }
 
@@ -223,7 +225,7 @@ namespace TheOtherRoles
         public static void stopStart(byte playerId) {
             if (AmongUsClient.Instance.AmHost && CustomOptionHolder.anyPlayerCanStopStart.getBool()) {
                 GameStartManager.Instance.ResetStartState();
-                PlayerControl.LocalPlayer.RpcSendChat($"{Helpers.playerById(playerId).Data.PlayerName} stopped the game start!");
+                PlayerControl.LocalPlayer.RpcSendChat($"{Helpers.playerById(playerId).Data.PlayerName} が試合開始を止めた！");
             }
         }
 
@@ -236,7 +238,7 @@ namespace TheOtherRoles
                     try {
                         setRole(roleId, playerId);
                     } catch (Exception e) {
-                        TheOtherRolesPlugin.Logger.LogError("Error while deserializing roles: " + e.Message);
+                        TheOtherRolesPlugin.Logger.LogError("ロールのデシリアライズ中のエラー: " + e.Message);
                     }
             }
             
@@ -311,6 +313,9 @@ namespace TheOtherRoles
                         break;
                     case RoleId.Snitch:
                         Snitch.snitch = player;
+                        break;
+                    case RoleId.Homeguard:
+                        Homeguard.homeguard = player;
                         break;
                     case RoleId.Jackal:
                         Jackal.jackal = player;
@@ -1289,6 +1294,12 @@ namespace TheOtherRoles
             else Snitch.playerRoomMap.Add(playerId, roomId);
         }
     }
+
+
+
+
+
+
 
     [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.HandleRpc))]
     class RPCHandlerPatch
