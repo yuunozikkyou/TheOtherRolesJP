@@ -39,6 +39,8 @@
 # The Other Roles
 
 The Other Rolesは [Among Us](https://store.steampowered.com/app/945360/Among_Us) のMODで、ゲームに多くの [新しいロール](#settings) 、 [カスタムスキンハット](#custom-hats) を追加します。さらに多くのロールがもうすぐ登場します。:)
+<img src="./Images/sukusyo.png" width="300">
+
 Even more roles are coming soon. :)
 
 | インポスター | クルーメイト | 第三陣営 | オプション | ゲームモード |
