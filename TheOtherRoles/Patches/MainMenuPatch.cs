@@ -71,7 +71,7 @@ namespace TheOtherRoles.Modules {
                 if (popUp != null) Object.Destroy(popUp);
                 var popUpTemplate = Object.FindObjectOfType<AnnouncementPopUp>(true);
                 if (popUpTemplate == null) {
-                    TheOtherRolesPlugin.Logger.LogError("エラーによりクレジットが表示されませんでした");
+                    TheOtherRolesPlugin.Logger.LogError("couldnt show credits, popUp is null");
                     return;
                 }
                 popUp = Object.Instantiate(popUpTemplate);
@@ -123,14 +123,14 @@ ugackMiner53 - Prop Hunt ゲームモードのアイデアとコアコード。<
                 creditsString += "</align>";
 
                 Assets.InnerNet.Announcement creditsAnnouncement = new() {
-                    Id = "TORJP、TORクレジット",
+                    Id = "torCredits",
                     Language = 0,
                     Number = 500,
-                    Title = "The Other Roles JP\nクレジットとリソース",
-                    ShortTitle = "TORクレジット",
+                    Title = "The Other Roles\nCredits & Resources",
+                    ShortTitle = "TOR Credits",
                     SubTitle = "",
                     PinState = false,
-                    Date = "13.03.2024",
+                    Date = "01.07.2021",
                     Text = creditsString,
                 };
                 __instance.StartCoroutine(Effects.Lerp(0.1f, new Action<float>((p) => {

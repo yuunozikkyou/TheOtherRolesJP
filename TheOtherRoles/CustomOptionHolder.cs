@@ -8,6 +8,16 @@ namespace TheOtherRoles {
         public static string[] rates = new string[]{"0%", "10%", "20%", "30%", "40%", "50%", "60%", "70%", "80%", "90%", "100%"};
         public static string[] ratesModifier = new string[]{"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15" };
         public static string[] presets = new string[]{"プリセット 1", "プリセット 2", "ランダム プリセット Skeld", "ランダム プリセット Mira HQ", "ランダム プリセット Polus", "ランダム プリセット Airship", "ランダム プリセット Submerged" };
+public static CustomOption madmateSpawnRate;
+public static CustomOption madmateCanEnterVents;
+public static CustomOption madmateHasImpostorVision;
+public static CustomOption madmateNoticeImpostors;
+public static CustomOption madmateExileCrewmate;
+public static CustomOption madmateCommonTasks;
+public static CustomOption madmateShortTasks;
+public static CustomOption madmateLongTasks;
+public static CustomOption madmateCanDieToSheriff;
+        public static CustomOption taskMasterBecomeATaskMasterWhenCompleteAllTasks;
 
         public static CustomOption presetSelection;
         public static CustomOption activateRoles;
@@ -449,7 +459,7 @@ namespace TheOtherRoles {
 
             eraserSpawnRate = CustomOption.Create(230, Types.Impostor, cs(Eraser.color, "イレイサー"), rates, null, true);
             eraserCooldown = CustomOption.Create(231, Types.Impostor, "イレイサーのクールダウン", 30f, 10f, 120f, 5f, eraserSpawnRate);
-            eraserCanEraseAnyone = CustomOption.Create(232, Types.Impostor, "イレイサーは役職を誰でも消せる", false, eraserSpawnRate);
+            eraserCanEraseAnyone = CustomOption.Create(232, Types.Impostor, "イレイサーはどの役職でも消せる", false, eraserSpawnRate);
 
             tricksterSpawnRate = CustomOption.Create(250, Types.Impostor, cs(Trickster.color, "トリックスター"), rates, null, true);
             tricksterPlaceBoxCooldown = CustomOption.Create(251, Types.Impostor, "トリックスターボックスのクールダウン", 10f, 2.5f, 30f, 2.5f, tricksterSpawnRate);
@@ -540,6 +550,18 @@ namespace TheOtherRoles {
             //homeguardSpawnRate = CustomOption.Create(79, Types.Crewmate, cs(Homeguard.color, "自宅警備員"), rates, null, true);
             //homeguardTasks0 = CustomOption.Create(219, Types.Crewmate, "タスク数(0固定)", 0f, homeguardSpawnRate);
             //homeguardSpawnRate = CustomOption.Create(79, Types.Crewmate, "自宅警備員", rates, Snitch.color, true);
+
+            madmateSpawnRate = CustomOption.Create(910, Types.Crewmate, cs(Madmate.color, "マッドメイト(現在ベントが使えるクルー)"), rates, null, true);
+            madmateExileCrewmate = CustomOption.Create(918, Types.Crewmate, "エグザイルクルーメイト", false, madmateSpawnRate);
+            madmateCanDieToSheriff = CustomOption.Create(911, Types.Crewmate, "シェリフがマッドメイトを切れるか", true, madmateSpawnRate);
+            madmateCanEnterVents = CustomOption.Create(912, Types.Crewmate, "ベントに入れるか", true, madmateSpawnRate);
+            madmateHasImpostorVision = CustomOption.Create(913, Types.Crewmate, "インポスタービジョンか", false, madmateSpawnRate);
+            madmateNoticeImpostors = CustomOption.Create(914, Types.Crewmate, "インポスターがわかるようになるか?(タスク)", false, madmateSpawnRate);
+            madmateCommonTasks = CustomOption.Create(915, Types.Crewmate, "通常タスク", 0f, 0f, 4f, 1f, madmateNoticeImpostors);
+            madmateShortTasks = CustomOption.Create(916, Types.Crewmate, "ショートタスク", 0f, 0f, 23f, 1f, madmateNoticeImpostors);
+            madmateLongTasks = CustomOption.Create(917, Types.Crewmate, "ロングタスク", 0f, 0f, 15f, 1f, madmateNoticeImpostors);
+
+
 
             mayorSpawnRate = CustomOption.Create(80, Types.Crewmate, cs(Mayor.color, "メイヤー"), rates, null, true);
             mayorCanSeeVoteColors = CustomOption.Create(81, Types.Crewmate, "メイヤーはどこに投票したか見える", false, mayorSpawnRate);

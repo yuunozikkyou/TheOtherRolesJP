@@ -21,6 +21,7 @@ namespace TheOtherRoles
         public static System.Random rnd = new System.Random((int)DateTime.Now.Ticks);
 
         public static void clearAndReloadRoles() {
+            Madmate.clearAndReload();
             Jester.clearAndReload();
             Mayor.clearAndReload();
             Portalmaker.clearAndReload();
@@ -44,7 +45,7 @@ namespace TheOtherRoles
             Tracker.clearAndReload();
             Vampire.clearAndReload();
             Snitch.clearAndReload();
-            Homeguard.clearAndReload();
+            //Homeguard.clearAndReload();
             Jackal.clearAndReload();
             Sidekick.clearAndReload();
             Eraser.clearAndReload();
@@ -258,6 +259,7 @@ namespace TheOtherRoles
             public static float cooldown = 30f;
             public static bool canKillNeutrals = false;
             public static bool spyCanDieToSheriff = false;
+            public static bool madmateCanDieToSheriff = true;
 
             public static PlayerControl currentTarget;
 
@@ -280,6 +282,7 @@ namespace TheOtherRoles
                 cooldown = CustomOptionHolder.sheriffCooldown.getFloat();
                 canKillNeutrals = CustomOptionHolder.sheriffCanKillNeutrals.getBool();
                 spyCanDieToSheriff = CustomOptionHolder.spyCanDieToSheriff.getBool();
+                madmateCanDieToSheriff = CustomOptionHolder.madmateCanDieToSheriff.getBool();
             }
         }
 
@@ -839,7 +842,7 @@ namespace TheOtherRoles
             canKillNearGarlics = CustomOptionHolder.vampireCanKillNearGarlics.getBool();
         }
     }
-    public static class Homeguard{
+public static class Homeguard{
         public static PlayerControl homeguard;
         public static Color color = new Color32(184, 251, 79, byte.MaxValue);
         public static int tasks = 0; // タスク数を0に設定
@@ -852,7 +855,32 @@ namespace TheOtherRoles
             homeguard = null;
         }
     }
-      
+    public static class Madmate{
+      public static PlayerControl madmate;
+        public static Color color = new Color32(255,0,0, byte.MaxValue);
+
+        public static bool canEnterVents = false;
+        public static bool hasImpostorVision = false;
+        public static bool noticeImpostors = false;
+        public static bool exileCrewmate = false;
+
+        public static void clearAndReload() {
+            madmate = null;
+            CustomOption opCanEnterVents = CustomOptionHolder.madmateCanEnterVents;
+            CustomOption opHasImpostorVision = CustomOptionHolder.madmateHasImpostorVision;
+            CustomOption opNoticeImpostors = CustomOptionHolder.madmateNoticeImpostors;
+            CustomOption opExileCrewmate = CustomOptionHolder.madmateExileCrewmate;
+
+            //if (CustomOptionHolder.evilHackerSpawnRate.getSelection() > 0 &&
+            //    CustomOptionHolder.evilHackerCanCreateMadmate.getBool()) {
+            //}
+            canEnterVents = opCanEnterVents.getBool();
+            hasImpostorVision = opHasImpostorVision.getBool();
+            noticeImpostors = opNoticeImpostors.getBool();
+            exileCrewmate = opExileCrewmate.getBool();
+        }
+    }
+
     public static class Snitch {
         public static PlayerControl snitch;
         public static Color color = new Color32(184, 251, 79, byte.MaxValue);
@@ -966,7 +994,31 @@ namespace TheOtherRoles
             wasTeamRed = wasImpostor = wasSpy = false;
         }
     }
+    public static class TaskMaster
+    {
+        public static PlayerControl taskMaster = null;
+        public static bool becomeATaskMasterWhenCompleteAllTasks = false;
+        public static Color color = new Color32(225, 86, 75, byte.MaxValue);
+        public static bool isTaskComplete = false;
+        public static byte clearExTasks = 0;
+        public static byte allExTasks = 0;
+        public static byte oldTaskMasterPlayerId = byte.MaxValue;
+        public static bool triggerTaskMasterWin = false;
 
+        public static void clearAndReload() {
+            taskMaster = null;
+            becomeATaskMasterWhenCompleteAllTasks = CustomOptionHolder.taskMasterBecomeATaskMasterWhenCompleteAllTasks.getBool();
+            isTaskComplete = false;
+            clearExTasks = 0;
+            allExTasks = 0;
+            oldTaskMasterPlayerId = byte.MaxValue;
+            triggerTaskMasterWin = false;
+        }
+
+        public static bool isTaskMaster(byte playerId) {
+            return taskMaster != null && taskMaster.PlayerId == playerId;
+        }
+    }
     public static class Eraser {
         public static PlayerControl eraser;
         public static Color color = Palette.ImpostorRed;

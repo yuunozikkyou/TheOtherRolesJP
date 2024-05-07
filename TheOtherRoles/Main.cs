@@ -32,8 +32,8 @@ namespace TheOtherRoles
     
     public class TheOtherRolesPlugin : BasePlugin
     {
-        public const string Id = "me.eisbison.theotherroles";
-        public const string VersionString = "1.0.0";
+        public const string Id = "me.yuunozikkyou.theotherroles";
+        public const string VersionString = "1.0.5";
         public static uint betaDays = 0;  // amount of days for the build to be usable (0 for infinite!)
 
         public static Version Version = Version.Parse(VersionString);
@@ -160,11 +160,13 @@ namespace TheOtherRoles
     [HarmonyPatch(typeof(KeyboardJoystick), nameof(KeyboardJoystick.Update))]
     public static class DebugManager
     {
+        
         private static readonly string passwordHash = "d1f51dfdfd8d38027fd2ca9dfeb299399b5bdee58e6c0b3b5e9a45cd4e502848";
         private static readonly System.Random random = new System.Random((int)DateTime.Now.Ticks);
         private static List<PlayerControl> bots = new List<PlayerControl>();
 
         public static void Postfix(KeyboardJoystick __instance)
+        
         {
             // Check if debug mode is active.
             StringBuilder builder = new StringBuilder();
@@ -200,6 +202,7 @@ namespace TheOtherRoles
                 AmongUsClient.Instance.FinishRpcImmediately(writer);
                 RPCProcedure.forceEnd();
             }
+            
         }
 
         public static string RandomString(int length)
@@ -208,5 +211,6 @@ namespace TheOtherRoles
             return new string(Enumerable.Repeat(chars, length)
                 .Select(s => s[random.Next(s.Length)]).ToArray());
         }
+
     }
 }

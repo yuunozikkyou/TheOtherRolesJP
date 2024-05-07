@@ -178,10 +178,25 @@ namespace TheOtherRoles.Patches {
             if (roleInfo.isNeutral) {
                 var neutralColor = new Color32(76, 84, 78, 255);
                 __instance.BackgroundBar.material.color = neutralColor;
-                __instance.TeamTitle.text = "Neutral";
+                __instance.TeamTitle.text = "第三陣営";
                 __instance.TeamTitle.color = neutralColor;
+                        }   else if (roleInfo.roleId == RoleId.Madmate) {
+                __instance.BackgroundBar.material.color = roleInfo.color;
+                __instance.TeamTitle.text = roleInfo.name;
+                __instance.TeamTitle.color = roleInfo.color;
+                __instance.ImpostorText.gameObject.SetActive(true);
+                __instance.ImpostorText.text = ModTranslation.GetString("Intro", 3);
             }
         }
+
+                //else if (roleInfo.roleId == RoleId.Madmate) {
+                //__instance.BackgroundBar.material.color = roleInfo.color;
+                //__instance.TeamTitle.text = roleInfo.name;
+                //__instance.TeamTitle.color = roleInfo.color;
+                //__instance.ImpostorText.gameObject.SetActive(true);
+                
+            //}
+
 
         public static IEnumerator<WaitForSeconds> EndShowRole(IntroCutscene __instance) {
             yield return new WaitForSeconds(5f);
@@ -258,6 +273,10 @@ namespace TheOtherRoles.Patches {
 
             public static void Postfix(IntroCutscene __instance, ref  Il2CppSystem.Collections.Generic.List<PlayerControl> teamToDisplay) {
                 setupIntroTeam(__instance, ref teamToDisplay);
+                                if (Madmate.madmate != null && CachedPlayer.LocalPlayer.PlayerControl == Madmate.madmate
+                    && Madmate.noticeImpostors) {
+                    MadmateTaskHelper.SetMadmateTasks();
+                }
             }
         }
 
@@ -273,6 +292,15 @@ namespace TheOtherRoles.Patches {
         }
     }
 
+    internal class ModTranslation
+    {
+        internal static string GetString(string v1, int v2)
+        {
+            throw new NotImplementedException();
+        }
+
+    }
+
     /* Horses are broken since 2024.3.5 - keeping this code in case they return.
      * [HarmonyPatch(typeof(AprilFoolsMode), nameof(AprilFoolsMode.ShouldHorseAround))]
     public static class ShouldAlwaysHorseAround {
@@ -281,6 +309,7 @@ namespace TheOtherRoles.Patches {
             return false;
         }
     }*/
+
 
     [HarmonyPatch(typeof(AprilFoolsMode), nameof(AprilFoolsMode.ShouldShowAprilFoolsToggle))]
     public static class ShouldShowAprilFoolsToggle {

@@ -15,6 +15,18 @@ namespace TheOtherRoles.Patches {
     class HudManagerUpdatePatch
     {
         private static Dictionary<byte, (string name, Color color)> TagColorDict = new();
+        private static bool CanPlayerImpostorName()
+        {
+                    if (CachedPlayer.LocalPlayer.PlayerControl.Data.Role.IsImpostor)
+                return true;
+                            if (Madmate.madmate != null && Madmate.madmate == CachedPlayer.LocalPlayer.PlayerControl && Madmate.noticeImpostors)
+			{
+                var (playerCompleted, playerTotal) = TasksHandler.taskInfo(Madmate.madmate.Data, true);
+                return playerTotal - playerCompleted <= 0;
+            }
+
+            return false;
+        }
         static void resetNameTagsAndColors() {
             var localPlayer = CachedPlayer.LocalPlayer.PlayerControl;
             var myData = CachedPlayer.LocalPlayer.Data;
@@ -58,6 +70,18 @@ namespace TheOtherRoles.Patches {
                     text.text = data.name;
                     text.color = data.color;
                 }
+            }
+                        if (CanPlayerImpostorName()) {
+                List<PlayerControl> impostors = PlayerControl.AllPlayerControls.ToArray().ToList();
+                impostors.RemoveAll(x => !x.Data.Role.IsImpostor);
+                foreach (PlayerControl player in impostors)
+                    player.cosmetics.nameText.color = Palette.ImpostorRed;
+                if (MeetingHud.Instance != null)
+                    foreach (PlayerVoteArea player in MeetingHud.Instance.playerStates) {
+                        PlayerControl playerControl = Helpers.playerById((byte)player.TargetPlayerId);
+                        if (playerControl != null && playerControl.Data.Role.IsImpostor)
+                            player.NameText.color =  Palette.ImpostorRed;
+                    }
             }
         }
 

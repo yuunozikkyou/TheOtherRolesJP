@@ -30,37 +30,37 @@ namespace TheOtherRoles
             this.isModifier = isModifier;
         }
 
-        public static RoleInfo homeguard = new RoleInfo("自宅警備員",Homeguard.color, "船をまもらなきゃ!!\nタスク?ナニソレオイシイノ?", "タスク?ナニソレオイシイノ?", RoleId.Homeguard);
+        //public static RoleInfo homeguard = new RoleInfo("自宅警備員",Homeguard.color, "船をまもらなきゃ!!\nタスク?ナニソレオイシイノ?", "タスク?ナニソレオイシイノ?", RoleId.Homeguard);
 
         public static RoleInfo jester = new RoleInfo("ジェスター", Jester.color, "投票で吊られよう", "投票で吊られよう", RoleId.Jester, true);
-        public static RoleInfo mayor = new RoleInfo("メイヤー", Mayor.color, "あなたの票は通常より多くカウントされる", "あなたの票は多くカウントされる", RoleId.Mayor);
-        public static RoleInfo portalmaker = new RoleInfo("ポータルメーカー", Portalmaker.color, "ポータルを作成しよう", "ポータルを作成しよう", RoleId.Portalmaker);
+        public static RoleInfo mayor = new RoleInfo("メイヤー", Mayor.color, "不思議な力によりあなたの票が多くカウントされる!!", "あなたの票は多くカウントされる", RoleId.Mayor);
+        public static RoleInfo portalmaker = new RoleInfo("ポータルメーカー", Portalmaker.color, "ポータルを設置してクルーの役に立とう", "ポータルを作成しよう", RoleId.Portalmaker);
         public static RoleInfo engineer = new RoleInfo("エンジニア",  Engineer.color, "船内の重要なシステムを維持しよう", "船を修理する", RoleId.Engineer);
-        public static RoleInfo sheriff = new RoleInfo("シェリフ", Sheriff.color, "<color=#FF1919FF>インポスター</color>を打ち抜こう", "インポスターを撃て", RoleId.Sheriff);
+        public static RoleInfo sheriff = new RoleInfo("シェリフ", Sheriff.color, "<color=#FF1919FF>人外</color>をぶち殺そう", "人外を殺す", RoleId.Sheriff);
         public static RoleInfo deputy = new RoleInfo("代理人", Sheriff.color, "<color=#FF1919FF>インポスター</color>に手錠をかけよう", "インポスターに手錠をかける", RoleId.Deputy);
         public static RoleInfo lighter = new RoleInfo("ライター", Lighter.color, "あなたの光は決して消えない", "あなたの光は決して消えない", RoleId.Lighter);
         public static RoleInfo godfather = new RoleInfo("ゴットファーザー", Godfather.color, "すべてのクルーを殺害しよう", "すべてのクルーを殺害しよう", RoleId.Godfather);
         public static RoleInfo mafioso = new RoleInfo("マフィア", Mafioso.color, "<color=#FF1919FF>マフィア</color>と協力して、クルーをキルしよう", "すべてのクルーを殺害しよう", RoleId.Mafioso);
         public static RoleInfo janitor = new RoleInfo("ジャニター", Janitor.color, "死体を隠して <color=#FF1919FF>マフィア</color> と協力する", "死体を隠す", RoleId.Janitor);
-        public static RoleInfo morphling = new RoleInfo("モーフィング", Morphling.color, "吊られないように、変身しよう", "変身する", RoleId.Morphling);
-        public static RoleInfo camouflager = new RoleInfo("カモフラージャー", Camouflager.color, "カモフラージュしてクルーを殺そう", "とりわけ隠す", RoleId.Camouflager);
-        public static RoleInfo vampire = new RoleInfo("ヴァンパイア", Vampire.color, "噛みついたクルーを殺す", "クルーに噛みつこう", RoleId.Vampire);
-        public static RoleInfo eraser = new RoleInfo("イレイサー", Eraser.color, "クルーをキルし、役職を消去しよう", "クルーの役職を消去する", RoleId.Eraser);
+        public static RoleInfo morphling = new RoleInfo("モーフィング", Morphling.color, "違います!!あの人が犯人です!!", "変身する", RoleId.Morphling);
+        public static RoleInfo camouflager = new RoleInfo("カモフラージャー", Camouflager.color, "誰かわからないよ...", "誰かわからなくしよう", RoleId.Camouflager);
+        public static RoleInfo vampire = new RoleInfo("ヴァンパイア", Vampire.color, "クルーに噛みつこう", "クルーに噛みつく", RoleId.Vampire);
+        public static RoleInfo eraser = new RoleInfo("イレイサー", Eraser.color, "あれ？私の役職はどこに？", "クルーの役職を消去する", RoleId.Eraser);
         public static RoleInfo trickster = new RoleInfo("トリックスター", Trickster.color, "ジャック・イン・ザ・ボックスを使ってクルーを驚かせよう", "クルーを驚かせる", RoleId.Trickster);
-        public static RoleInfo cleaner = new RoleInfo("クリーナー", Cleaner.color, "クルーをキルし、死体を消そう", "死体を片付ける", RoleId.Cleaner);
+        public static RoleInfo cleaner = new RoleInfo("クリーナー", Cleaner.color, "死体なんてなかった、いいね？", "死体を片付ける", RoleId.Cleaner);
         public static RoleInfo warlock = new RoleInfo("魔術師", Warlock.color, "クルーを呪い、キルしよう", "みんなを呪って、殺す", RoleId.Warlock);
         public static RoleInfo bountyHunter = new RoleInfo("バウンティーハンター", BountyHunter.color, "賞金首を狙おう", "賞金首を狙おう", RoleId.BountyHunter);
-        public static RoleInfo detective = new RoleInfo("探偵", Detective.color, "足跡を調べて <color=#FF1919FF>インポスター</color> を見つけよう", "足跡を調べる", RoleId.Detective);
+        public static RoleInfo detective = new RoleInfo("探偵", Detective.color, "足跡を調べて <color=#FF1919FF>人外</color> を見つけよう", "足跡を調べる", RoleId.Detective);
         public static RoleInfo timeMaster = new RoleInfo("タイムマスター", TimeMaster.color, "タイムシールドを使って身を守ろう...", "タイムシールドを使う", RoleId.TimeMaster);
         public static RoleInfo medic = new RoleInfo("メディック", Medic.color, "盾で誰かを守る", "盾で誰かを守る", RoleId.Medic);
-        //public static RoleInfo madmate = new RoleInfo("マッドメイト",Madmate.color,"インポスターの手助けをしよう", "インポスターの手助けをする" ,RoleId.madmate);
-        public static RoleInfo swapper = new RoleInfo("スワッパー", Swapper.color, "<color=#FF1919FF>インポスター</color> を通報するために票を交換しよう", "スワップ投票", RoleId.Swapper);
-        public static RoleInfo seer = new RoleInfo("シーア", Seer.color, "クルーが死ぬのを見るだろう", "クルーが死ぬのを見るだろう", RoleId.Seer);
-        public static RoleInfo hacker = new RoleInfo("ハッカー", Hacker.color, "<color=#FF1919FF>インポスター</color> を見つけるために、システムをハックする", "ハックしてインポスターを見つけよう", RoleId.Hacker);
-        public static RoleInfo tracker = new RoleInfo("トラッカー", Tracker.color, "インポスターを追い詰めよう", "インポスターを追い詰めよう", RoleId.Tracker);
+        public static RoleInfo madmate = new RoleInfo("マッドメイト\n※ベントが使えるクルーになってます",Madmate.color,"インポスターの手助けをしよう", "インポスターの手助けをする" ,RoleId.Madmate);
+        public static RoleInfo swapper = new RoleInfo("スワッパー", Swapper.color, "<color=#FF1919FF>人外</color> を追放するために票を交換しよう", "投票を入れ替える", RoleId.Swapper);
+        public static RoleInfo seer = new RoleInfo("シーア", Seer.color, "誰かが死んだのを見た...", "クルーが死ぬのを見る", RoleId.Seer);
+        public static RoleInfo hacker = new RoleInfo("ハッカー", Hacker.color, "<color=#FF1919FF>人外</color> を見つけるためにシステムをハックする", "ハックしてインポスターを見つけよう", RoleId.Hacker);
+        public static RoleInfo tracker = new RoleInfo("トラッカー", Tracker.color, "人外を追い詰めよう", "人外を追い詰める", RoleId.Tracker);
         public static RoleInfo snitch = new RoleInfo("スニッチ", Snitch.color, "<color=#FF1919FF>インポスター</color>を見つけるためにタスクを終わらせよう", "タスクを終わらせる", RoleId.Snitch);
-        public static RoleInfo jackal = new RoleInfo("ジャッカル", Jackal.color, "すべてのクルーと、 <color=#FF1919FF>インポスターを</color> ぶち殺そう", "みんなをぶち殺そう", RoleId.Jackal, true);
-        public static RoleInfo sidekick = new RoleInfo("サイドキック", Sidekick.color, "ジャッカルのキルを手伝おう", "ジャッカルのキルを手伝おう", RoleId.Sidekick, true);
+        public static RoleInfo jackal = new RoleInfo("ジャッカル", Jackal.color, "すべてのクルーと<color=#FF1919FF>インポスターを</color> ぶち殺そう", "みんなをぶち殺そう", RoleId.Jackal, true);
+        public static RoleInfo sidekick = new RoleInfo("サイドキック", Sidekick.color, "ジャッカルと一緒に船を壊そう", "ジャッカルのキルを手伝おう", RoleId.Sidekick, true);
         public static RoleInfo spy = new RoleInfo("スパイ", Spy.color, "<color=#FF1919FF>インポスター</color>を混乱させろ", "インポスターを混乱させる", RoleId.Spy);
         public static RoleInfo securityGuard = new RoleInfo("警備員", SecurityGuard.color, "ベント塞いでカメラを設置しよう", "ベントを塞いでカメラを設置する", RoleId.SecurityGuard);
         public static RoleInfo arsonist = new RoleInfo("アーソニスト", Arsonist.color, "すべてを燃やして灰にしまおう", "船ごと燃やしてしまおう", RoleId.Arsonist, true);
@@ -77,15 +77,15 @@ namespace TheOtherRoles
         public static RoleInfo witch = new RoleInfo("ウィッチ", Witch.color, "クルーに魔法をかけよう", "クルーに魔法をかける", RoleId.Witch);
         public static RoleInfo ninja = new RoleInfo("ニンジャ", Ninja.color, "クルーを驚かせてキルをしよう", "クルーを驚かせてキルをする", RoleId.Ninja);
         public static RoleInfo thief = new RoleInfo("シーフ", Thief.color, "キラーを1人キルして役職を奪おう", "キラーの役職を奪う", RoleId.Thief, true);
-        public static RoleInfo bomber = new RoleInfo("ボンバー", Bomber.color, "全クルーを爆発させよう", "全クルーを爆発させよう", RoleId.Bomber);
+        public static RoleInfo bomber = new RoleInfo("ボンバー", Bomber.color, "船を爆発させよう!!", "爆発させる", RoleId.Bomber);
 
-        public static RoleInfo hunter = new RoleInfo("ハンター", Palette.ImpostorRed, Helpers.cs(Palette.ImpostorRed, "クルーを探し、キルをする"), "クルーを探し、キルをする", RoleId.Impostor);
+        public static RoleInfo hunter = new RoleInfo("鬼", Palette.ImpostorRed, Helpers.cs(Palette.ImpostorRed, "みーつけた!^-^"), "クルーを探し、キルをする", RoleId.Impostor);
         public static RoleInfo hunted = new RoleInfo("ハンデット", Color.white, "隠そう", "隠す", RoleId.Crewmate);
 
-        public static RoleInfo prop = new RoleInfo("プロップ", Color.white, "モノに化けて生き残ろう", "モノに変装する", RoleId.Crewmate);
+        public static RoleInfo prop = new RoleInfo("プロップ", Color.white, "私はただのオブジェクト...", "モノに変装する", RoleId.Crewmate);
 
 
-        //public static RoleInfo madmate = new RoleInfo("マッドメイト", Madmate.color, "インポスターの手助けをしよう", "投票で吊られよう", RoleId.madmate);
+       //public static RoleInfo madmate = new RoleInfo("マッドメイト", Madmate.color, "インポスターの手助けをしよう", "インポスターの手助けをする", RoleId.Madmate);
 
 
         // Modifier
@@ -101,9 +101,9 @@ namespace TheOtherRoles
         public static RoleInfo chameleon = new RoleInfo("カメレオン", Color.yellow, "動いていないと見えにくい", "動いていないと見えにくい", RoleId.Chameleon, false, true);
         public static RoleInfo shifter = new RoleInfo("シフター", Color.yellow, "役職をシフトする", "役職をシフトする", RoleId.Shifter, false, true);
 
-
         public static List<RoleInfo> allRoleInfos = new List<RoleInfo>() {
-            homeguard,
+            //homeguard,
+            madmate,
             impostor,
             godfather,
             mafioso,
@@ -189,6 +189,7 @@ namespace TheOtherRoles
 
             // Special roles
             if (p == Jester.jester) infos.Add(jester);
+            if (p == Madmate.madmate) infos.Add(madmate);
             if (p == Mayor.mayor) infos.Add(mayor);
             if (p == Portalmaker.portalmaker) infos.Add(portalmaker);
             if (p == Engineer.engineer) infos.Add(engineer);
@@ -216,7 +217,7 @@ namespace TheOtherRoles
             if (p == Hacker.hacker) infos.Add(hacker);
             if (p == Tracker.tracker) infos.Add(tracker);
             if (p == Snitch.snitch) infos.Add(snitch);
-            if (p == Homeguard.homeguard) infos.Add(homeguard);
+            //if (p == Homeguard.homeguard) infos.Add(homeguard);
             if (p == Jackal.jackal || (Jackal.formerJackals != null && Jackal.formerJackals.Any(x => x.PlayerId == p.PlayerId))) infos.Add(jackal);
             if (p == Sidekick.sidekick) infos.Add(sidekick);
             if (p == Spy.spy) infos.Add(spy);
