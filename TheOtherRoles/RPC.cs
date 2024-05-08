@@ -19,7 +19,8 @@ using Assets.CoreScripts;
 namespace TheOtherRoles
 {
     public enum RoleId {
-        Homeguard,
+        //Homeguard,
+        Madmate,
         Jester,
         Mayor,
         Portalmaker,
@@ -314,9 +315,9 @@ namespace TheOtherRoles
                     case RoleId.Snitch:
                         Snitch.snitch = player;
                         break;
-                    case RoleId.Homeguard:
-                        Homeguard.homeguard = player;
-                        break;
+                    //case RoleId.Homeguard:
+                       // Homeguard.homeguard = player;
+                       // break;
                     case RoleId.Jackal:
                         Jackal.jackal = player;
                         break;
@@ -361,6 +362,9 @@ namespace TheOtherRoles
                         break;
                     case RoleId.Trapper:
                         Trapper.trapper = player;
+                        break;
+                    case RoleId.Madmate:
+                        Madmate.madmate = player;
                         break;
                     case RoleId.Lawyer:
                         Lawyer.lawyer = player;
@@ -715,6 +719,8 @@ namespace TheOtherRoles
             if (player == null || !player.canBeErased()) return;
 
             // Crewmate roles
+            if (player == Madmate.madmate) Madmate.clearAndReload();
+                        MadmateTaskHelper.Reset();
             if (player == Mayor.mayor) Mayor.clearAndReload();
             if (player == Portalmaker.portalmaker) Portalmaker.clearAndReload();
             if (player == Engineer.engineer) Engineer.clearAndReload();

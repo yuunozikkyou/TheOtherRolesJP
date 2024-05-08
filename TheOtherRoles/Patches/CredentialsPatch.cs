@@ -1,5 +1,4 @@
-﻿using AsmResolver;
-using HarmonyLib;
+﻿using HarmonyLib;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -37,12 +36,11 @@ TORJP開発者<color=#d2b48c>ゆう</color>,<color=#ff0000>れおぴい</color><
 
         public static string mainMenuCredentials =
 $@"開発者 <color=#FCCE03FF>Eisbison</color>, <color=#FCCE03FF>Thunderstorm584</color>, <color=#FCCE03FF>EndOfFile</color>, <color=#FCCE03FF>Mallöris</color> & <color=#FCCE03FF>Gendelo</color>
-デザイナー <color=#FCCE03FF>Bavari</color>, 翻訳 <color=#FCCE03FF>ゆうの実況</color>
-        TORJP開発者<color=#d2b48c>ゆう</color>,<color=#ff0000>れおぴい</color>";
+デザイナー <color=#FCCE03FF>Bavari</color>, 翻訳 <color=#FCCE03FF>ゆうの実況</color>TORJP開発者<color=#d2b48c>ゆう</color>,<color=#ff0000>れおぴい</color>";
 
         public static string contributorsCredentials =
 //$@"<size=60%> {Helpers.GradientColorText("ffff00", "ffd700", "Smeggy")}に感謝!!</color></size>";
-$@"<size=60%> {Helpers.GradientColorText("ff4500", "ffd700", "Smeggy")}に感謝!!</color></size>";
+$@"<size=60%> {Helpers.GradientColorText("ff4500", "ffd700", "Smeggy")}と{Helpers.GradientColorText("C71585", "B22222", "めーぷる")}さんに感謝!!</color></size>";
 
 
         [HarmonyPatch(typeof(PingTracker), nameof(PingTracker.Update))]
@@ -84,7 +82,7 @@ $@"<size=60%> {Helpers.GradientColorText("ff4500", "ffd700", "Smeggy")}に感謝
                     else if (TORMapOptions.gameMode == CustomGamemodes.PropHunt) gameModeText = $"Prop Hunt";
                     if (gameModeText != "") gameModeText = Helpers.cs(Color.yellow, gameModeText) + "\n";
 
-                    __instance.text.text = $"{fullCredentialsVersion}\n  {gameModeText + fullCredentials + __instance.text.text.GetBinaryFormatterSize = 30}";
+                    __instance.text.text = $"{fullCredentialsVersion}\n  {gameModeText + fullCredentials + __instance.text.text}";
                     __instance.transform.localPosition = new Vector3(3.5f, __instance.transform.localPosition.y, __instance.transform.localPosition.z);
                 }
             }

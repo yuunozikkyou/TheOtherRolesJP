@@ -855,6 +855,7 @@ public static class Homeguard{
             homeguard = null;
         }
     }
+
     public static class Madmate{
       public static PlayerControl madmate;
         public static Color color = new Color32(255,0,0, byte.MaxValue);
@@ -863,7 +864,8 @@ public static class Homeguard{
         public static bool hasImpostorVision = false;
         public static bool noticeImpostors = false;
         public static bool exileCrewmate = false;
-
+        public static bool canMoveInVent = false;
+        public static bool madmateNoticeImpostors = false;
         public static void clearAndReload() {
             madmate = null;
             CustomOption opCanEnterVents = CustomOptionHolder.madmateCanEnterVents;
@@ -878,9 +880,9 @@ public static class Homeguard{
             hasImpostorVision = opHasImpostorVision.getBool();
             noticeImpostors = opNoticeImpostors.getBool();
             exileCrewmate = opExileCrewmate.getBool();
+            canMoveInVent = CustomOptionHolder.madmateCanMoveInVent.getBool();
         }
     }
-
     public static class Snitch {
         public static PlayerControl snitch;
         public static Color color = new Color32(184, 251, 79, byte.MaxValue);

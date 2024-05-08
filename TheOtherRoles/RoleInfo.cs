@@ -53,7 +53,7 @@ namespace TheOtherRoles
         public static RoleInfo detective = new RoleInfo("探偵", Detective.color, "足跡を調べて <color=#FF1919FF>人外</color> を見つけよう", "足跡を調べる", RoleId.Detective);
         public static RoleInfo timeMaster = new RoleInfo("タイムマスター", TimeMaster.color, "タイムシールドを使って身を守ろう...", "タイムシールドを使う", RoleId.TimeMaster);
         public static RoleInfo medic = new RoleInfo("メディック", Medic.color, "盾で誰かを守る", "盾で誰かを守る", RoleId.Medic);
-        public static RoleInfo madmate = new RoleInfo("マッドメイト\n※ベントが使えるクルーになってます",Madmate.color,"インポスターの手助けをしよう", "インポスターの手助けをする" ,RoleId.Madmate);
+        public static RoleInfo madmate = new RoleInfo("マッドメイト",Madmate.color,"インポスターの手助けをしよう", "インポスターの手助けをする" ,RoleId.Madmate);
         public static RoleInfo swapper = new RoleInfo("スワッパー", Swapper.color, "<color=#FF1919FF>人外</color> を追放するために票を交換しよう", "投票を入れ替える", RoleId.Swapper);
         public static RoleInfo seer = new RoleInfo("シーア", Seer.color, "誰かが死んだのを見た...", "クルーが死ぬのを見る", RoleId.Seer);
         public static RoleInfo hacker = new RoleInfo("ハッカー", Hacker.color, "<color=#FF1919FF>人外</color> を見つけるためにシステムをハックする", "ハックしてインポスターを見つけよう", RoleId.Hacker);

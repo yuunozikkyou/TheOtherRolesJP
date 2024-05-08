@@ -17,6 +17,8 @@ public static CustomOption madmateCommonTasks;
 public static CustomOption madmateShortTasks;
 public static CustomOption madmateLongTasks;
 public static CustomOption madmateCanDieToSheriff;
+        public static CustomOption madmateCanMoveInVent;
+
         public static CustomOption taskMasterBecomeATaskMasterWhenCompleteAllTasks;
 
         public static CustomOption presetSelection;
@@ -551,15 +553,16 @@ public static CustomOption madmateCanDieToSheriff;
             //homeguardTasks0 = CustomOption.Create(219, Types.Crewmate, "タスク数(0固定)", 0f, homeguardSpawnRate);
             //homeguardSpawnRate = CustomOption.Create(79, Types.Crewmate, "自宅警備員", rates, Snitch.color, true);
 
-            madmateSpawnRate = CustomOption.Create(910, Types.Crewmate, cs(Madmate.color, "マッドメイト(現在ベントが使えるクルー)"), rates, null, true);
+            madmateSpawnRate = CustomOption.Create(910, Types.Crewmate, cs(Madmate.color, "マッドメイト"), rates, null, true);
             madmateExileCrewmate = CustomOption.Create(918, Types.Crewmate, "エグザイルクルーメイト", false, madmateSpawnRate);
             madmateCanDieToSheriff = CustomOption.Create(911, Types.Crewmate, "シェリフがマッドメイトを切れるか", true, madmateSpawnRate);
             madmateCanEnterVents = CustomOption.Create(912, Types.Crewmate, "ベントに入れるか", true, madmateSpawnRate);
+            madmateCanMoveInVent = CustomOption.Create(913, Types.Crewmate, "ベント移動ができるか", true, madmateCanEnterVents);
             madmateHasImpostorVision = CustomOption.Create(913, Types.Crewmate, "インポスタービジョンか", false, madmateSpawnRate);
-            madmateNoticeImpostors = CustomOption.Create(914, Types.Crewmate, "インポスターがわかるようになるか?(タスク)", false, madmateSpawnRate);
-            madmateCommonTasks = CustomOption.Create(915, Types.Crewmate, "通常タスク", 0f, 0f, 4f, 1f, madmateNoticeImpostors);
-            madmateShortTasks = CustomOption.Create(916, Types.Crewmate, "ショートタスク", 0f, 0f, 23f, 1f, madmateNoticeImpostors);
-            madmateLongTasks = CustomOption.Create(917, Types.Crewmate, "ロングタスク", 0f, 0f, 15f, 1f, madmateNoticeImpostors);
+           // madmateNoticeImpostors = CustomOption.Create(914, Types.Crewmate, "インポスターがわかるようになるか?(タスク)", false, madmateSpawnRate);
+            //madmateCommonTasks = CustomOption.Create(915, Types.Crewmate, "通常タスク", 0f, 0f, 4f, 1f, madmateNoticeImpostors);
+            //madmateShortTasks = CustomOption.Create(916, Types.Crewmate, "ショートタスク", 0f, 0f, 23f, 1f, madmateNoticeImpostors);
+            //madmateLongTasks = CustomOption.Create(917, Types.Crewmate, "ロングタスク", 0f, 0f, 15f, 1f, madmateNoticeImpostors);
 
 
 
