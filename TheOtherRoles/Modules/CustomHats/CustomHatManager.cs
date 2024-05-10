@@ -10,10 +10,12 @@ using System.Reflection;
 namespace TheOtherRoles.Modules.CustomHats;
 
 public static class CustomHatManager
-{
+{    public const string TORJPDeveloper = "TORJPDeveloper";
+    public const string TORJPoriginal = "TORJPoriginal!!";
     public const string ResourcesDirectory = "TheOtherHats";
-    public const string InnerslothPackageName = "Innersloth Hats";
+    public const string InnerslothPackageName = "公式ハット";
     public const string DeveloperPackageName = "Developer Hats";
+
     
     internal static readonly Tuple<string, string> Repository = new("yuunozikkyou", "TheOtherHats");
     internal static string RepositoryUrl
@@ -26,7 +28,7 @@ public static class CustomHatManager
     }
 
     internal static readonly string ManifestFileName = "CustomHats.json";
-    
+
     internal static string CustomSkinsDirectory => Path.Combine(Path.GetDirectoryName(Application.dataPath)!, ResourcesDirectory);
     internal static string HatsDirectory => CustomSkinsDirectory;
     

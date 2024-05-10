@@ -55,8 +55,10 @@ internal static class HatsTabPatches
         var orderedKeys = packages.Keys.OrderBy(x =>
             x switch
             {
+                CustomHatManager.TORJPDeveloper => 0,
+                CustomHatManager.TORJPoriginal => 1,
                 CustomHatManager.InnerslothPackageName => 1000,
-                CustomHatManager.DeveloperPackageName => 0,
+                CustomHatManager.DeveloperPackageName => 20,
                 _ => 500
             });
         foreach (var key in orderedKeys)
