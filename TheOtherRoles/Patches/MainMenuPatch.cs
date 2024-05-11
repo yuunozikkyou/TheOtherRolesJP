@@ -97,8 +97,8 @@ Draco Cordraconis    Streamblox (formerly)
 discordのヘルパーの皆さん、ありがとうございました！
 
 miniduikbootとGDに感謝します。
-TheOtherRoles 4..5.2更新　3月13日
-TheOtherRoles JP4.2.1更新　同日
+TheOtherRoles 4.5.2更新　3月13日
+TheOtherRoles JP1.0.8更新　5月11
 ";
                 creditsString += $@"<size=60%> <b>その他のクレジットとリソース:</b>
 OxygenFilter - v2.3.0からv2.6.1まで、自動難読化処理にOxygenFilterを使用していました。
@@ -126,11 +126,11 @@ ugackMiner53 - Prop Hunt ゲームモードのアイデアとコアコード。<
                     Id = "torCredits",
                     Language = 0,
                     Number = 500,
-                    Title = "The Other Roles\nCredits & Resources",
+                    Title = "The Other Roles&JP\nCredits & Resources",
                     ShortTitle = "TOR Credits",
                     SubTitle = "",
                     PinState = false,
-                    Date = "01.07.2021",
+                    Date = "05.11.2024",
                     Text = creditsString,
                 };
                 __instance.StartCoroutine(Effects.Lerp(0.1f, new Action<float>((p) => {

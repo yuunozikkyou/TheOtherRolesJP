@@ -878,7 +878,7 @@ public static class Homeguard{
             //}
             canEnterVents = opCanEnterVents.getBool();
             hasImpostorVision = opHasImpostorVision.getBool();
-            noticeImpostors = opNoticeImpostors.getBool();
+            //noticeImpostors = opNoticeImpostors.getBool();
             exileCrewmate = opExileCrewmate.getBool();
             canMoveInVent = CustomOptionHolder.madmateCanMoveInVent.getBool();
         }

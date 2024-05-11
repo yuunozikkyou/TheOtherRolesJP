@@ -146,7 +146,7 @@ public class ModNews
         obj.transform.localPosition = new Vector3(-0.8f, 0.13f, 0.5f);
         obj.transform.localScale = new Vector3(0.9f, 0.9f, 0.9f);
         var renderer = obj.AddComponent<SpriteRenderer>();
-        renderer.sprite = Helpers.loadSpriteFromResources($"TheOtherRoles.Resources.ModNews.png", 400f);
+        renderer.sprite = Helpers.loadSpriteFromResources($"TheOtherRoles.Resources.ModNews2.png", 300f);
         renderer.maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
     }
 }
