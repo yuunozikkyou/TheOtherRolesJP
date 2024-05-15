@@ -18,8 +18,8 @@ using static StarGen;
 
 namespace TheOtherRoles.Modules {
     public class ModUpdater : MonoBehaviour {
-        public const string RepositoryOwner = "TheOtherRolesAU";
-        public const string RepositoryName = "TheOtherRoles";
+        public const string RepositoryOwner = "yuunozikkyou";
+        public const string RepositoryName = "TheOtherRolesJP";
         public static ModUpdater Instance { get; private set; }
 
         public ModUpdater(IntPtr ptr) : base(ptr) { }
@@ -85,7 +85,7 @@ namespace TheOtherRoles.Modules {
 
             var button = popup.transform.GetChild(2).gameObject;
             button.SetActive(false);
-            popup.TextAreaTMP.text = $"Updating TOR\nPlease wait...";
+            popup.TextAreaTMP.text = $"TORJPをアップデート中です\nしばらくお待ち下さい";
 
             var asset = release.Assets.Find(FilterPluginAsset);
             var www = new UnityWebRequest();
@@ -96,16 +96,16 @@ namespace TheOtherRoles.Modules {
 
             while (!operation.isDone) {
                 int stars = Mathf.CeilToInt(www.downloadProgress * 10);
-                string progress = $"Updating TOR\nPlease wait...\nDownloading...\n{new String((char)0x25A0, stars) + new String((char)0x25A1, 10 - stars)}";
+                string progress = $"TORを更新しています。\n{new String((char)0x25A0, stars) + new String((char)0x25A1, 10 - stars)}";
                 popup.TextAreaTMP.text = progress;
                 yield return new WaitForEndOfFrame();
             }
             
             if (www.isNetworkError || www.isHttpError) {
-                popup.TextAreaTMP.text = "Update wasn't successful\nTry again later,\nor update manually.";
+                popup.TextAreaTMP.text = "アップデートに失敗しました。\nは手動でアップデートしてください。";
                 yield break;
             }
-            popup.TextAreaTMP.text = $"Updating TOR\nPlease wait...\n\nDownload complete\ncopying file...";
+            popup.TextAreaTMP.text = $"TORを更新していますしばらくお待ちください...\nダウンロード完了\nファイルのコピー...";
 
             var filePath = Path.Combine(Paths.PluginPath, asset.Name);
 
@@ -127,7 +127,7 @@ namespace TheOtherRoles.Modules {
             www.Dispose();
 
             if (!hasError) {
-                popup.TextAreaTMP.text = $"TheOtherRoles\nupdated successfully\nPlease restart the game.";
+                popup.TextAreaTMP.text = $"TheOtherRolesJP が正常にアップデートされました。\n再起動してください";
             }
             button.SetActive(true);
             _busy = false;
@@ -177,15 +177,15 @@ namespace TheOtherRoles.Modules {
             StartCoroutine(Effects.Lerp(0.1f, (System.Action<float>)(p => text.SetText(t))));
             passiveButton.OnMouseOut.AddListener((Action)(() => text.color = Color.red));
             passiveButton.OnMouseOver.AddListener((Action)(() => text.color = Color.white));
-            var announcement = $"<size=150%>A new THE OTHER ROLES update to {latestRelease.Tag} is available</size>\n{latestRelease.Description}";
+            var announcement = $"<size=150%>THE OTHER ROLES JPupdateの{latestRelease.Tag}が公開されました。</size>\n{latestRelease.Description}";
             var mgr = FindObjectOfType<MainMenuManager>(true);
-            if (showPopUp) mgr.StartCoroutine(CoShowAnnouncement(announcement, shortTitle: "TOR Update", date : latestRelease.PublishedAt)) ;
+            if (showPopUp) mgr.StartCoroutine(CoShowAnnouncement(announcement, shortTitle: "TOR UpdateJP", date : latestRelease.PublishedAt)) ;
             showPopUp = false;
 
         }
 
         [HideFromIl2Cpp]
-        public IEnumerator CoShowAnnouncement(string announcement, bool show = true, string shortTitle = "TOR Update", string title = "", string date = "") {
+        public IEnumerator CoShowAnnouncement(string announcement, bool show = true, string shortTitle = "TORJP Update", string title = "", string date = "") {
             var mgr = FindObjectOfType<MainMenuManager>(true);
             var popUpTemplate = UnityEngine.Object.FindObjectOfType<AnnouncementPopUp>(true);
             if (popUpTemplate == null) {

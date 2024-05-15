@@ -180,6 +180,12 @@ namespace TheOtherRoles.Patches {
                 __instance.BackgroundBar.material.color = neutralColor;
                 __instance.TeamTitle.text = "Neutral";
                 __instance.TeamTitle.color = neutralColor;
+            }   else if (roleInfo.roleId == RoleId.Madmate) {
+                __instance.BackgroundBar.material.color = roleInfo.color;
+                __instance.TeamTitle.text = roleInfo.name;
+                __instance.TeamTitle.color = roleInfo.color;
+                __instance.ImpostorText.gameObject.SetActive(true);
+                __instance.ImpostorText.text = ModTranslation.GetString("Intro", 3);
             }
         }
 
@@ -258,7 +264,6 @@ namespace TheOtherRoles.Patches {
 
             public static void Postfix(IntroCutscene __instance, ref  Il2CppSystem.Collections.Generic.List<PlayerControl> teamToDisplay) {
                 setupIntroTeam(__instance, ref teamToDisplay);
-            }
         }
 
         [HarmonyPatch(typeof(IntroCutscene), nameof(IntroCutscene.BeginImpostor))]
@@ -271,7 +276,16 @@ namespace TheOtherRoles.Patches {
                 setupIntroTeam(__instance, ref yourTeam);
             }
         }
+    }    
+    internal class ModTranslation
+    {
+        internal static string GetString(string v1, int v2)
+        {
+            throw new NotImplementedException();
+        }
+
     }
+}
 
     /* Horses are broken since 2024.3.5 - keeping this code in case they return.
      * [HarmonyPatch(typeof(AprilFoolsMode), nameof(AprilFoolsMode.ShouldHorseAround))]

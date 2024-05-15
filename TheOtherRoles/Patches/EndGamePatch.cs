@@ -32,7 +32,8 @@ namespace TheOtherRoles.Patches {
         VultureWin,
         AdditionalLawyerBonusWin,
         AdditionalAlivePursuerWin,
-        ProsecutorWin
+        ProsecutorWin,
+        AdditionalMadmateWin,
     }
 
     static class AdditionalTempData {
@@ -98,6 +99,7 @@ namespace TheOtherRoles.Patches {
             if (Lawyer.lawyer != null) notWinners.Add(Lawyer.lawyer);
             if (Pursuer.pursuer != null) notWinners.Add(Pursuer.pursuer);
             if (Thief.thief != null) notWinners.Add(Thief.thief);
+            if (Madmate.madmate != null) notWinners.Add(Madmate.madmate);
 
             notWinners.AddRange(Jackal.formerJackals);
 
@@ -224,7 +226,14 @@ namespace TheOtherRoles.Patches {
                     TempData.winners.Add(new WinningPlayerData(Pursuer.pursuer.Data));
                 AdditionalTempData.additionalWinConditions.Add(WinCondition.AdditionalAlivePursuerWin);
             }
-
+            if (Madmate.madmate != null)
+            {
+                if (TempData.winners.ToArray().Any(x => x.IsImpostor) && !TempData.winners.ToArray().Any(x => x.PlayerName == Madmate.madmate.Data.PlayerName))
+                    TempData.winners.Add(new WinningPlayerData(Madmate.madmate.Data));
+                else if (!TempData.winners.ToArray().Any(x => x.IsImpostor))
+                    TempData.winners.Remove(new WinningPlayerData(Madmate.madmate.Data));
+                AdditionalTempData.additionalWinConditions.Add(WinCondition.AdditionalMadmateWin);
+            }
             AdditionalTempData.timer = ((float)(DateTime.UtcNow - (HideNSeek.isHideNSeekGM ? HideNSeek.startTime : PropHunt.startTime)).TotalMilliseconds) / 1000;
 
             // Reset Settings
