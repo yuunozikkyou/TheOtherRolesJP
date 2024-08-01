@@ -15,18 +15,21 @@ namespace TheOtherRoles.Patches {
     [HarmonyPatch]
     public static class CredentialsPatch {
         public static string fullCredentialsVersion = 
-$@"<size=130%><color=#ff351f>TheOtherRoles</color></size> v{TheOtherRolesPlugin.Version.ToString() + (TheOtherRolesPlugin.betaDays>0 ? "-BETA": "")}";
-public static string fullCredentials =
-$@"<size=60%>Modded by <color=#FCCE03FF>Eisbison</color>, <color=#FCCE03FF>EndOfFile</color>
-<color=#FCCE03FF>Thunderstorm584</color>, <color=#FCCE03FF>Mallöris</color> & <color=#FCCE03FF>Gendelo</color>
-Design by <color=#FCCE03FF>Bavari</color></size>";
+$@"<size=130%><size=130%>{Helpers.GradientColorText("ff0000", "ff7f50", $"TheOtherRoles JP")}</size>" + $" v{TheOtherRolesPlugin.Version.ToString() + (TheOtherRolesPlugin.betaDays > 0 ? "-BETA" : "")}";
+        public static string fullCredentials =
+        $@"開発者 <color=#FCCE03FF>Eisbison</color>様,<color=#FCCE03FF>Thunderstorm584</color>様
+        <color=#FCCE03FF>Mallöris</color>様 & <color=#FCCE03FF>Gendelo</color>様
+        デザイナー <color=#FCCE03FF>Bavari</color>様,
+        <color=#FCCE03FF>EndOfFile</color>,翻訳 <color=#FCCE03FF>ゆうの実況</color>
+        TORJP開発者<color=#d2b48c>ゆう</color>,<color=#ff0000>れおぴい</color>";
 
-    public static string mainMenuCredentials = 
-$@"Modded by <color=#FCCE03FF>Eisbison</color>, <color=#FCCE03FF>Thunderstorm584</color>, <color=#FCCE03FF>EndOfFile</color>, <color=#FCCE03FF>Mallöris</color> & <color=#FCCE03FF>Gendelo</color>
-Design by <color=#FCCE03FF>Bavari</color>";
+        public static string mainMenuCredentials =
+$@"開発者 <color=#FCCE03FF>Eisbison</color>, <color=#FCCE03FF>Thunderstorm584</color>, <color=#FCCE03FF>EndOfFile</color>, <color=#FCCE03FF>Mallöris</color> & <color=#FCCE03FF>Gendelo</color>
+デザイナー <color=#FCCE03FF>Bavari</color>, 翻訳 <color=#FCCE03FF>ゆうの実況</color>TORJP開発者<color=#d2b48c>ゆう</color>,<color=#ff0000>れおぴい</color>";
+
 
         public static string contributorsCredentials =
-$@"<size=60%> <color=#FCCE03FF>Special thanks to Smeggy</color></size>";
+$@"<size=60%> {Helpers.GradientColorText("ff4500", "ffd700", "Smeggy")}さんと<color=#ffff00>TOHY開発者</color>様と{Helpers.GradientColorText("C71585", "B22222", "めーぷる")}様と<color=#4169e1>KY</color>様に感謝!!</color></size>";
 
         [HarmonyPatch(typeof(PingTracker), nameof(PingTracker.Update))]
         internal static class PingTrackerPatch
@@ -42,7 +45,7 @@ $@"<size=60%> <color=#FCCE03FF>Special thanks to Smeggy</color></size>";
                     else if (HandleGuesser.isGuesserGm) gameModeText = $"Guesser";
                     else if (PropHunt.isPropHuntGM) gameModeText = "Prop Hunt";
                     if (gameModeText != "") gameModeText = Helpers.cs(Color.yellow, gameModeText) + "\n";
-                    __instance.text.text = $"<size=130%><color=#ff351f>TheOtherRoles</color></size> v{TheOtherRolesPlugin.Version.ToString() + (TheOtherRolesPlugin.betaDays > 0 ? "-BETA" : "")}\n{gameModeText}" + __instance.text.text;
+                    __instance.text.text = $"<size=130%>{Helpers.GradientColorText("ff0000", "ff7f50", $"TheOtherRoles JP")}</size> v{TheOtherRolesPlugin.Version.ToString() + (TheOtherRolesPlugin.betaDays > 0 ? "-BETA" : "")}\n{gameModeText}" + __instance.text.text;
                     position.DistanceFromEdge = new Vector3(2.25f, 0.11f, 0);
                 } else {
                     string gameModeText = $"";
@@ -168,7 +171,7 @@ $@"<size=60%> <color=#FCCE03FF>Special thanks to Smeggy</color></size>";
 
             public static async Task loadMOTDs() {
                 HttpClient client = new HttpClient();
-                HttpResponseMessage response = await client.GetAsync("https://raw.githubusercontent.com/TheOtherRolesAU/MOTD/main/motd.txt");
+                HttpResponseMessage response = await client.GetAsync("https://raw.githubusercontent.com/yuunozikkyou/MOTD/main/motd.txt");
                 response.EnsureSuccessStatusCode();
                 string motds = await response.Content.ReadAsStringAsync();
                 foreach(string line in motds.Split("\n", StringSplitOptions.RemoveEmptyEntries)) {

@@ -20,6 +20,7 @@ using Reactor.Utilities.Extensions;
 namespace TheOtherRoles
 {
     public enum RoleId {
+        Madmate,
         Jester,
         Mayor,
         Portalmaker,
@@ -254,6 +255,9 @@ namespace TheOtherRoles
             foreach (PlayerControl player in CachedPlayer.AllPlayers) {
                 if (player.PlayerId == playerId) {
                     switch ((RoleId)roleId) {
+                    case RoleId.Madmate:
+                        Madmate.madmate = player;
+                        break;
                     case RoleId.Jester:
                         Jester.jester = player;
                         break;

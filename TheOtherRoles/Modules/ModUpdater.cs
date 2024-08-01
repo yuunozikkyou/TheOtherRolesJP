@@ -18,8 +18,8 @@ using static StarGen;
 
 namespace TheOtherRoles.Modules {
     public class ModUpdater : MonoBehaviour {
-        public const string RepositoryOwner = "TheOtherRolesAU";
-        public const string RepositoryName = "TheOtherRoles";
+        public const string RepositoryOwner = "yuunozikkyou";
+        public const string RepositoryName = "TheOtherRolesJP";
         public static ModUpdater Instance { get; private set; }
 
         public ModUpdater(IntPtr ptr) : base(ptr) { }
@@ -85,7 +85,7 @@ namespace TheOtherRoles.Modules {
 
             var button = popup.transform.GetChild(2).gameObject;
             button.SetActive(false);
-            popup.TextAreaTMP.text = $"Updating TOR\nPlease wait...";
+            popup.TextAreaTMP.text = $"TORJPの更新中\nお待ちください...";
 
             var asset = release.Assets.Find(FilterPluginAsset);
             var www = new UnityWebRequest();
@@ -96,16 +96,16 @@ namespace TheOtherRoles.Modules {
 
             while (!operation.isDone) {
                 int stars = Mathf.CeilToInt(www.downloadProgress * 10);
-                string progress = $"Updating TOR\nPlease wait...\nDownloading...\n{new String((char)0x25A0, stars) + new String((char)0x25A1, 10 - stars)}";
+                string progress = $"TORJPを更新しています。\nダウンロー中です\nお待ちください...\n{new String((char)0x25A0, stars) + new String((char)0x25A1, 10 - stars)}";
                 popup.TextAreaTMP.text = progress;
                 yield return new WaitForEndOfFrame();
             }
             
             if (www.isNetworkError || www.isHttpError) {
-                popup.TextAreaTMP.text = "Update wasn't successful\nTry again later,\nor update manually.";
+                popup.TextAreaTMP.text = "更新に失敗しました。\n再度お試しください\n\nもしできないのであれば\n手動で更新してください";
                 yield break;
             }
-            popup.TextAreaTMP.text = $"Updating TOR\nPlease wait...\n\nDownload complete\ncopying file...";
+            popup.TextAreaTMP.text = $"TORJPを更新しています\nしばらくお待ちください...\n\nダウンロードが完了しました...\nファイルをコピーしています...";
 
             var filePath = Path.Combine(Paths.PluginPath, asset.Name);
 
@@ -127,7 +127,7 @@ namespace TheOtherRoles.Modules {
             www.Dispose();
 
             if (!hasError) {
-                popup.TextAreaTMP.text = $"TheOtherRoles\nupdated successfully\nPlease restart the game.";
+                popup.TextAreaTMP.text = $"TheOtherRolesJP が正常にアップデートされました。\n再起動してください";
             }
             button.SetActive(true);
             _busy = false;

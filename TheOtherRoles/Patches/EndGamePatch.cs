@@ -22,6 +22,7 @@ namespace TheOtherRoles.Patches {
     }
 
     enum WinCondition {
+        AdditionalMadmateWin,
         Default,
         LoversTeamWin,
         LoversSoloWin,
@@ -98,6 +99,7 @@ namespace TheOtherRoles.Patches {
             if (Lawyer.lawyer != null) notWinners.Add(Lawyer.lawyer);
             if (Pursuer.pursuer != null) notWinners.Add(Pursuer.pursuer);
             if (Thief.thief != null) notWinners.Add(Thief.thief);
+            if (Madmate.madmate != null) notWinners.Add(Madmate.madmate);
 
             notWinners.AddRange(Jackal.formerJackals);
 
@@ -224,7 +226,14 @@ namespace TheOtherRoles.Patches {
                     EndGameResult.CachedWinners.Add(new CachedPlayerData(Pursuer.pursuer.Data));
                 AdditionalTempData.additionalWinConditions.Add(WinCondition.AdditionalAlivePursuerWin);
             }
-
+            if (Madmate.madmate != null)
+            {
+                if (EndGameResult.CachedWinners.ToArray().Any(x => x.IsImpostor) && !EndGameResult.CachedWinners.ToArray().Any(x => x.PlayerName == Madmate.madmate.Data.PlayerName))
+                    EndGameResult.CachedWinners.Add(new CachedPlayerData(Madmate.madmate.Data));
+                else if (!EndGameResult.CachedWinners.ToArray().Any(x => x.IsImpostor))
+                    EndGameResult.CachedWinners.Remove(new CachedPlayerData(Madmate.madmate.Data));
+                AdditionalTempData.additionalWinConditions.Add(WinCondition.AdditionalMadmateWin);
+            }
             AdditionalTempData.timer = ((float)(DateTime.UtcNow - (HideNSeek.isHideNSeekGM ? HideNSeek.startTime : PropHunt.startTime)).TotalMilliseconds) / 1000;
 
             // Reset Settings

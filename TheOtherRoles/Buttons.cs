@@ -398,6 +398,7 @@ namespace TheOtherRoles
                     if (murderAttemptResult == MurderAttemptResult.PerformKill) {
                         byte targetId = 0;
                         if ((Sheriff.currentTarget.Data.Role.IsImpostor && (Sheriff.currentTarget != Mini.mini || Mini.isGrownUp())) ||
+                            (Sheriff.madmateCanDieToSheriff && Madmate.madmate == Sheriff.currentTarget) ||
                             (Sheriff.spyCanDieToSheriff && Spy.spy == Sheriff.currentTarget) ||
                             (Sheriff.canKillNeutrals && Helpers.isNeutral(Sheriff.currentTarget)) ||
                             (Jackal.jackal == Sheriff.currentTarget || Sidekick.sidekick == Sheriff.currentTarget)) {

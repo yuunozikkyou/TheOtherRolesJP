@@ -20,6 +20,7 @@ namespace TheOtherRoles
         public static System.Random rnd = new System.Random((int)DateTime.Now.Ticks);
 
         public static void clearAndReloadRoles() {
+            Madmate.clearAndReload();
             Jester.clearAndReload();
             Mayor.clearAndReload();
             Portalmaker.clearAndReload();
@@ -257,6 +258,7 @@ namespace TheOtherRoles
             public static float cooldown = 30f;
             public static bool canKillNeutrals = false;
             public static bool spyCanDieToSheriff = false;
+            public static bool madmateCanDieToSheriff = true;
 
             public static PlayerControl currentTarget;
 
@@ -279,6 +281,7 @@ namespace TheOtherRoles
                 cooldown = CustomOptionHolder.sheriffCooldown.getFloat();
                 canKillNeutrals = CustomOptionHolder.sheriffCanKillNeutrals.getBool();
                 spyCanDieToSheriff = CustomOptionHolder.spyCanDieToSheriff.getBool();
+                madmateCanDieToSheriff = CustomOptionHolder.madmateCanDieToSheriff.getBool();
             }
         }
 
@@ -1220,6 +1223,31 @@ namespace TheOtherRoles
             camPrice = Mathf.RoundToInt(CustomOptionHolder.securityGuardCamPrice.getFloat());
             ventPrice = Mathf.RoundToInt(CustomOptionHolder.securityGuardVentPrice.getFloat());
             cantMove = CustomOptionHolder.securityGuardNoMove.getBool();
+        }
+    }
+    public static class Madmate{
+      public static PlayerControl madmate;
+        public static Color color = new Color32(255,0,0, byte.MaxValue);
+
+        public static bool canEnterVents = false;
+        public static bool hasImpostorVision = false;
+        public static bool noticeImpostors = false;
+        public static bool exileCrewmate = false;
+        public static bool canMoveInVent = false;
+                public static void clearAndReload() {
+            madmate = null;
+            CustomOption opCanEnterVents = CustomOptionHolder.madmateCanEnterVents;
+            CustomOption opHasImpostorVision = CustomOptionHolder.madmateHasImpostorVision;
+            CustomOption opExileCrewmate = CustomOptionHolder.madmateExileCrewmate;
+
+            //if (CustomOptionHolder.evilHackerSpawnRate.getSelection() > 0 &&
+            //    CustomOptionHolder.evilHackerCanCreateMadmate.getBool()) {
+            //}
+            canEnterVents = opCanEnterVents.getBool();
+            hasImpostorVision = opHasImpostorVision.getBool();
+            //noticeImpostors = opNoticeImpostors.getBool();
+            exileCrewmate = opExileCrewmate.getBool();
+            canMoveInVent = CustomOptionHolder.madmateCanMoveInVent.getBool();
         }
     }
 
