@@ -17,11 +17,11 @@ namespace TheOtherRoles.Patches {
         public static string fullCredentialsVersion = 
 $@"<size=130%><size=130%>{Helpers.GradientColorText("ff0000", "ff7f50", $"TheOtherRoles JP")}</size>" + $" v{TheOtherRolesPlugin.Version.ToString() + (TheOtherRolesPlugin.betaDays > 0 ? "-BETA" : "")}";
         public static string fullCredentials =
-        $@"開発者 <color=#FCCE03FF>Eisbison</color>様,<color=#FCCE03FF>Thunderstorm584</color>様
+        $@"<size=70%>開発者 <color=#FCCE03FF>Eisbison</color>様,<color=#FCCE03FF>Thunderstorm584</color>様
         <color=#FCCE03FF>Mallöris</color>様 & <color=#FCCE03FF>Gendelo</color>様
         デザイナー <color=#FCCE03FF>Bavari</color>様,
         <color=#FCCE03FF>EndOfFile</color>,翻訳 <color=#FCCE03FF>ゆうの実況</color>
-        TORJP開発者<color=#d2b48c>ゆう</color>,<color=#ff0000>れおぴい</color>";
+        TORJP開発者<color=#d2b48c>ゆう</color>,<color=#ff0000>れおぴい</color></size>";
 
         public static string mainMenuCredentials =
 $@"開発者 <color=#FCCE03FF>Eisbison</color>, <color=#FCCE03FF>Thunderstorm584</color>, <color=#FCCE03FF>EndOfFile</color>, <color=#FCCE03FF>Mallöris</color> & <color=#FCCE03FF>Gendelo</color>
