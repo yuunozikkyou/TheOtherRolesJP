@@ -34,11 +34,19 @@
     },
     {
       "Number": "100005",
-      "Title": "<color=#b22222>TheOtherRolesJP</color> v1.1/0",
+      "Title": "<color=#b22222>TheOtherRolesJP</color> v1.1.0",
       "Subtitle": "<color=#b22222>TheOtherRolesJP</color> v1.1.0リリース!!",
       "Short": "＊<color=#b22222>TOR JP v1.1.0</color>＊",
       "Body":"ようやくTORJPが最新バージョンに対応!\nTORJPがようやく最新バージョンに対応しました!\n特に変更点とか無いんですよね...\n修正点は本家TOR本家のリリースを見てください",
       "Date": "2024-8-1T00:23:30Z"
+    },
+    {
+    "Number": "100006",
+    "Title": "<color=#b22222>TheOtherRolesJP</color> v1.1.1",
+    "Subtitle": "<color=#b22222>TheOtherRolesJP</color> v1.1.1リリース!!",
+    "Short": "＊<color=#b22222>TOR JP v1.1.0</color>＊",
+    "Body":"ようやくTORJPが最新バージョンに対応!\nTORJPがようやく最新バージョンに対応しました!\n特に変更点とか無いんですよね...\n実はここまで全部コピペなんだよね...(?)\nちなみに今回自分では最新に対応できないので\nKYさんとかいう神様に対応してもらいました。\n神様、ありがとう。\nあとどうでもいいけど今回のバージョンゾロ目で気持ちよくなりました(?)\n\n\n筆者:ゆう\n開発者:ゆう、れおぴい\nTORJP関与者:KY",
+    "Date": "2024-10-29T00:17:30Z"
     }
   ]
 }
