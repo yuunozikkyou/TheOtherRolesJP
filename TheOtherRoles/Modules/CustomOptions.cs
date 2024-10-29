@@ -489,7 +489,7 @@ namespace TheOtherRoles {
                 viewSettingsInfoPanel.SetInfo(StringNames.ImpostorsCategory, option.selections[value].ToString(), 61);
                 viewSettingsInfoPanel.titleText.text = option.name;
                 if (option.isHeader && (int)optionType != 99 && option.heading == "" && (option.type == CustomOptionType.Neutral || option.type == CustomOptionType.Crewmate || option.type == CustomOptionType.Impostor || option.type == CustomOptionType.Modifier)) {
-                    viewSettingsInfoPanel.titleText.text = "Spawn Chance";
+                    viewSettingsInfoPanel.titleText.text = "スポーン確率";
                 }
                 if ((int)optionType == 99) {
                     viewSettingsInfoPanel.titleText.outlineColor = Color.white;
@@ -659,7 +659,7 @@ namespace TheOtherRoles {
                 stringOption.OnValueChanged = new Action<OptionBehaviour>((o) => { });
                 stringOption.TitleText.text = option.name;
                 if (option.isHeader && option.heading == "" && (option.type == CustomOptionType.Neutral || option.type == CustomOptionType.Crewmate || option.type == CustomOptionType.Impostor || option.type == CustomOptionType.Modifier)) {
-                    stringOption.TitleText.text = "Spawn Chance";
+                    stringOption.TitleText.text = "スポーン確率";
                 }
                 if (stringOption.TitleText.text.Length > 25)
                     stringOption.TitleText.fontSize = 2.2f;

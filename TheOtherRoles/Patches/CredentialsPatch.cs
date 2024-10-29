@@ -61,7 +61,7 @@ $@"<size=60%> {Helpers.GradientColorText("ff4500", "ffd700", "Smeggy")}さんと
                         var GameModeText = GameObject.Find("GameModeText")?.GetComponent<TextMeshPro>();
                         GameModeText.text = gameModeText == "" ? (GameOptionsManager.Instance.currentGameOptions.GameMode == GameModes.HideNSeek ? "Van. HideNSeek" : "Classic" ): gameModeText;
                         var ModeLabel = GameObject.Find("ModeLabel")?.GetComponentInChildren<TextMeshPro>();
-                        ModeLabel.text = "Game Mode";
+                        ModeLabel.text = "ゲームモード";
                     } catch { }
                 }
                 position.AdjustPosition();
