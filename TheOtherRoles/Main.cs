@@ -1,4 +1,4 @@
-﻿global using Il2CppInterop.Runtime;
+global using Il2CppInterop.Runtime;
 global using Il2CppInterop.Runtime.Attributes;
 global using Il2CppInterop.Runtime.InteropTypes;
 global using Il2CppInterop.Runtime.InteropTypes.Arrays;
@@ -33,7 +33,7 @@ namespace TheOtherRoles
     public class TheOtherRolesPlugin : BasePlugin
     {
         public const string Id = "me.eisbison.theotherroles";
-        public const string VersionString = "1.1.1";
+        public const string VersionString = "1.1.2";
         public static uint betaDays = 0;  // amount of days for the build to be usable (0 for infinite!)
 
         public static Version Version = Version.Parse(VersionString);
@@ -136,18 +136,7 @@ namespace TheOtherRoles
             SubmergedCompatibility.Initialize();
             MainMenuPatch.addSceneChangeCallbacks();
             _ = RoleInfo.loadReadme();
-            AddToKillDistanceSetting.addKillDistance();
             TheOtherRolesPlugin.Logger.LogInfo("Loading TOR completed!");
-        }
-    }
-
-    // Deactivate bans, since I always leave my local testing game and ban myself
-    [HarmonyPatch(typeof(StatsManager), nameof(StatsManager.AmBanned), MethodType.Getter)]
-    public static class AmBannedPatch
-    {
-        public static void Postfix(out bool __result)
-        {
-            __result = false;
         }
     }
     [HarmonyPatch(typeof(ChatController), nameof(ChatController.Awake))]

@@ -10,6 +10,24 @@ using TheOtherRoles.Utilities;
 using TheOtherRoles.CustomGameModes;
 
 namespace TheOtherRoles.Patches {
+    [HarmonyPatch(typeof(IntroCutscene), nameof(IntroCutscene.CoBegin))]
+    class IntroCutsceneCoBeginPatch {
+        private static int lastIntroInstanceIdLogged;
+        public static void Postfix(IntroCutscene __instance) {
+            // イントロの実体コルーチン開始時点でもロールテキスト更新を走らせる
+            // （ShowRole/BeginCrewmate/BeginImpostor が環境によって呼ばれない/上書きされるケース対策）
+            try {
+                int id = __instance != null ? __instance.GetInstanceID() : 0;
+                if (lastIntroInstanceIdLogged != id) {
+                    lastIntroInstanceIdLogged = id;
+                    if (TheOtherRolesPlugin.DebugMode != null && TheOtherRolesPlugin.DebugMode.Value == "true")
+                        TheOtherRolesPlugin.Logger.LogInfo($"[TOR DEBUG] IntroCutscene.CoBegin postfix hit (instanceId={id})");
+                }
+            } catch { }
+            IntroPatch.TriggerSetRoleTextsDelayed(__instance);
+        }
+    }
+
     [HarmonyPatch(typeof(IntroCutscene), nameof(IntroCutscene.OnDestroy))]
     class IntroCutsceneOnDestroyPatch
     {
@@ -150,6 +168,20 @@ namespace TheOtherRoles.Patches {
 
     [HarmonyPatch]
     class IntroPatch {
+        public static bool localRoleUpdated;
+        private static int lastIntroInstanceIdLogged;
+        private static bool loggedRoleTextApplied;
+        private static bool loggedUiReady;
+
+        public static void TriggerSetRoleTextsDelayed(IntroCutscene __instance) {
+            SetUpRoleTextPatch.SetRoleTextsDelayed(__instance);
+        }
+
+        public static void NotifyRoleUpdate(byte playerId) {
+            if (PlayerControl.LocalPlayer == null) return;
+            if (playerId == PlayerControl.LocalPlayer.PlayerId) localRoleUpdated = true;
+        }
+
         public static void setupIntroTeamIcons(IntroCutscene __instance, ref  Il2CppSystem.Collections.Generic.List<PlayerControl> yourTeam) {
             // Intro solo teams
             if (Helpers.isNeutral(CachedPlayer.LocalPlayer.PlayerControl)) {
@@ -209,28 +241,30 @@ namespace TheOtherRoles.Patches {
         [HarmonyPatch(typeof(IntroCutscene), nameof(IntroCutscene.ShowRole))]
         class SetUpRoleTextPatch {
             static int seed = 0;
-            static public void SetRoleTexts(IntroCutscene __instance) {
-                // Don't override the intro of the vanilla roles
+
+            public static void SetRoleTexts(IntroCutscene __instance) {
+                // バニラのロール名・説明をモッドロールで上書きする
                 List<RoleInfo> infos = RoleInfo.getRoleInfoForPlayer(CachedPlayer.LocalPlayer.PlayerControl);
                 RoleInfo roleInfo = infos.Where(info => !info.isModifier).FirstOrDefault();
                 RoleInfo modifierInfo = infos.Where(info => info.isModifier).FirstOrDefault();
+
+                if (roleInfo == null) return;
 
                 if (EventUtility.isEnabled) {
                     var roleInfos = RoleInfo.allRoleInfos.Where(x => !x.isModifier).ToList();
                     if (roleInfo.isNeutral) roleInfos.RemoveAll(x => !x.isNeutral);
                     if (roleInfo.color == Palette.ImpostorRed) roleInfos.RemoveAll(x => x.color != Palette.ImpostorRed);
                     if (!roleInfo.isNeutral && roleInfo.color != Palette.ImpostorRed) roleInfos.RemoveAll(x => x.color == Palette.ImpostorRed || x.isNeutral);
-                    var rnd = new System.Random(seed);
-                    roleInfo = roleInfos[rnd.Next(roleInfos.Count)];
+                    var rndLocal = new System.Random(seed);
+                    roleInfo = roleInfos[rndLocal.Next(roleInfos.Count)];
                 }
 
                 __instance.RoleBlurbText.text = "";
-                if (roleInfo != null) {
-                    __instance.RoleText.text = roleInfo.name;
-                    __instance.RoleText.color = roleInfo.color;
-                    __instance.RoleBlurbText.text = roleInfo.introDescription;
-                    __instance.RoleBlurbText.color = roleInfo.color;
-                }
+                __instance.RoleText.text = roleInfo.name;
+                __instance.RoleText.color = roleInfo.color;
+                __instance.RoleBlurbText.text = roleInfo.introDescription;
+                __instance.RoleBlurbText.color = roleInfo.color;
+
                 if (modifierInfo != null) {
                     if (modifierInfo.roleId != RoleId.Lover)
                         __instance.RoleBlurbText.text += Helpers.cs(modifierInfo.color, $"\n{modifierInfo.introDescription}");
@@ -245,13 +279,64 @@ namespace TheOtherRoles.Patches {
                     else if (infos.Any(info => info.roleId == RoleId.Deputy))
                         __instance.RoleBlurbText.text += Helpers.cs(Sheriff.color, $"\nYour Sheriff is {Sheriff.sheriff?.Data?.PlayerName ?? ""}");
                 }
+
+                int id = __instance != null ? __instance.GetInstanceID() : 0;
+                if (!loggedRoleTextApplied || lastIntroInstanceIdLogged != id) {
+                    lastIntroInstanceIdLogged = id;
+                    loggedRoleTextApplied = true;
+                    if (TheOtherRolesPlugin.DebugMode != null && TheOtherRolesPlugin.DebugMode.Value == "true")
+                        System.Console.WriteLine($"[TOR DEBUG] Intro RoleText applied: '{__instance?.RoleText?.text}'");
+                }
             }
-            public static bool Prefix(IntroCutscene __instance) {
+
+            // バニラ処理の「後」に必ずモッドのロールテキストを上書きする
+            public static void Postfix(IntroCutscene __instance) {
                 seed = rnd.Next(5000);
-                FastDestroyableSingleton<HudManager>.Instance.StartCoroutine(Effects.Lerp(1f, new Action<float>((p) => {
-                    SetRoleTexts(__instance);
+                // 役職情報が同期されるまで待ってから役職テキストを設定
+                SetUpRoleTextPatch.SetRoleTextsDelayed(__instance);
+            }
+
+            public static void SetRoleTextsDelayed(IntroCutscene __instance) {
+                bool done = false;
+                float lastUpdateAt = -999f;
+                localRoleUpdated = true;
+                int id = __instance != null ? __instance.GetInstanceID() : 0;
+                if (lastIntroInstanceIdLogged != id) {
+                    loggedRoleTextApplied = false;
+                    loggedUiReady = false;
+                }
+
+                __instance.StartCoroutine(Effects.Lerp(10f, new Action<float>((p) => {
+                    if (done) return;
+
+                    float t = p * 10f;
+                    if (localRoleUpdated || (t - lastUpdateAt) >= 0.1f) {
+                        localRoleUpdated = false;
+                        lastUpdateAt = t;
+                        bool uiReady = __instance != null
+                            && __instance.RoleText != null
+                            && __instance.RoleBlurbText != null
+                            && __instance.RoleText.gameObject != null
+                            && __instance.RoleText.gameObject.activeInHierarchy;
+
+                        if (uiReady) {
+                            if (!loggedUiReady) {
+                                loggedUiReady = true;
+                                try {
+                                    if (TheOtherRolesPlugin.DebugMode != null && TheOtherRolesPlugin.DebugMode.Value == "true")
+                                        TheOtherRolesPlugin.Logger.LogInfo($"[TOR DEBUG] Intro UI is ready (t={t:0.00}s)");
+                                } catch { }
+                            }
+                            SetRoleTexts(__instance);
+
+                            List<RoleInfo> infos = RoleInfo.getRoleInfoForPlayer(CachedPlayer.LocalPlayer.PlayerControl);
+                            RoleInfo roleInfo = infos.Where(info => !info.isModifier).FirstOrDefault();
+                            if (roleInfo != null && roleInfo.roleId != RoleId.Crewmate && roleInfo.roleId != RoleId.Impostor) {
+                                done = true;
+                            }
+                        }
+                    }
                 })));
-                return true;
             }
         }
 
@@ -263,6 +348,8 @@ namespace TheOtherRoles.Patches {
 
             public static void Postfix(IntroCutscene __instance, ref  Il2CppSystem.Collections.Generic.List<PlayerControl> teamToDisplay) {
                 setupIntroTeam(__instance, ref teamToDisplay);
+                // 確実にモッド役職名を表示するため、遅延実行でロールテキストを上書きする
+                SetUpRoleTextPatch.SetRoleTextsDelayed(__instance);
             }
         }
 
@@ -274,6 +361,8 @@ namespace TheOtherRoles.Patches {
 
             public static void Postfix(IntroCutscene __instance, ref  Il2CppSystem.Collections.Generic.List<PlayerControl> yourTeam) {
                 setupIntroTeam(__instance, ref yourTeam);
+                // インポスター陣営でも同様に遅延実行でモッド役職名を反映する
+                SetUpRoleTextPatch.SetRoleTextsDelayed(__instance);
             }
         }
     }

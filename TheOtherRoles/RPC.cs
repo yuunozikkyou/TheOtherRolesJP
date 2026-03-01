@@ -17,6 +17,8 @@ using AmongUs.Data;
 using AmongUs.GameOptions;
 using Assets.CoreScripts;
 using Reactor.Utilities.Extensions;
+
+
 namespace TheOtherRoles
 {
     public enum RoleId {
@@ -171,6 +173,8 @@ namespace TheOtherRoles
 
     public static class RPCProcedure {
 
+        public static readonly Dictionary<byte, RoleId> roleIdByPlayerId = new Dictionary<byte, RoleId>();
+
         // Main Controls
 
         public static void resetVariables() {
@@ -252,6 +256,8 @@ namespace TheOtherRoles
         }
 
         public static void setRole(byte roleId, byte playerId) {
+            roleIdByPlayerId[playerId] = (RoleId)roleId;
+            IntroPatch.NotifyRoleUpdate(playerId);
             foreach (PlayerControl player in CachedPlayer.AllPlayers) {
                 if (player.PlayerId == playerId) {
                     switch ((RoleId)roleId) {

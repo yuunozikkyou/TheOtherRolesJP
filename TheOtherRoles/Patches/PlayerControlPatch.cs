@@ -23,7 +23,9 @@ namespace TheOtherRoles.Patches {
 
         static PlayerControl setTarget(bool onlyCrewmates = false, bool targetPlayersInVents = false, List<PlayerControl> untargetablePlayers = null, PlayerControl targetingPlayer = null) {
             PlayerControl result = null;
-            float num = AmongUs.GameOptions.GameOptionsData.KillDistances[Mathf.Clamp(GameOptionsManager.Instance.currentNormalGameOptions.KillDistance, 0, 2)];
+            float[] killDistances = { 0.5f, 1f, 1.8f, 2.5f };
+            int distanceIndex = Mathf.Clamp(GameOptionsManager.Instance.currentNormalGameOptions.KillDistance, 0, killDistances.Length - 1);
+            float num = killDistances[distanceIndex];
             if (!MapUtilities.CachedShipStatus) return result;
             if (targetingPlayer == null) targetingPlayer = CachedPlayer.LocalPlayer.PlayerControl;
             if (targetingPlayer.Data.IsDead) return result;

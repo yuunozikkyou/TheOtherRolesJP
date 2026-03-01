@@ -2145,5 +2145,60 @@ namespace TheOtherRoles
             currentTarget = null;
             futureShift = null;
         }
+
+        // Helper method to check if a player has a specific role
+        public static bool hasRole(this PlayerControl player, RoleId roleId) {
+            if (player == null) return false;
+            
+            switch (roleId) {
+                case RoleId.Madmate: return player == Madmate.madmate;
+                case RoleId.Jester: return player == Jester.jester;
+                case RoleId.Mayor: return player == Mayor.mayor;
+                case RoleId.Portalmaker: return player == Portalmaker.portalmaker;
+                case RoleId.Engineer: return player == Engineer.engineer;
+                case RoleId.Sheriff: return player == Sheriff.sheriff || player == Sheriff.formerSheriff;
+                case RoleId.Deputy: return player == Deputy.deputy;
+                case RoleId.Lighter: return player == Lighter.lighter;
+                case RoleId.Godfather: return player == Godfather.godfather;
+                case RoleId.Mafioso: return player == Mafioso.mafioso;
+                case RoleId.Janitor: return player == Janitor.janitor;
+                case RoleId.Detective: return player == Detective.detective;
+                case RoleId.TimeMaster: return player == TimeMaster.timeMaster;
+                case RoleId.Medic: return player == Medic.medic;
+                case RoleId.Shifter: return player == Shifter.shifter;
+                case RoleId.Swapper: return player == Swapper.swapper;
+                case RoleId.Seer: return player == Seer.seer;
+                case RoleId.Morphling: return player == Morphling.morphling;
+                case RoleId.Camouflager: return player == Camouflager.camouflager;
+                case RoleId.Hacker: return player == Hacker.hacker;
+                case RoleId.Tracker: return player == Tracker.tracker;
+                case RoleId.Vampire: return player == Vampire.vampire;
+                case RoleId.Snitch: return player == Snitch.snitch;
+                case RoleId.Jackal: return player == Jackal.jackal || (Jackal.formerJackals != null && Jackal.formerJackals.Any(x => x.PlayerId == player.PlayerId));
+                case RoleId.Sidekick: return player == Sidekick.sidekick;
+                case RoleId.Eraser: return player == Eraser.eraser;
+                case RoleId.Spy: return player == Spy.spy;
+                case RoleId.Trickster: return player == Trickster.trickster;
+                case RoleId.Cleaner: return player == Cleaner.cleaner;
+                case RoleId.Warlock: return player == Warlock.warlock;
+                case RoleId.SecurityGuard: return player == SecurityGuard.securityGuard;
+                case RoleId.Arsonist: return player == Arsonist.arsonist;
+                case RoleId.EvilGuesser: return player == Guesser.evilGuesser;
+                case RoleId.NiceGuesser: return player == Guesser.niceGuesser;
+                case RoleId.BountyHunter: return player == BountyHunter.bountyHunter;
+                case RoleId.Vulture: return player == Vulture.vulture;
+                case RoleId.Medium: return player == Medium.medium;
+                case RoleId.Lawyer: return player == Lawyer.lawyer && !Lawyer.isProsecutor;
+                case RoleId.Prosecutor: return player == Lawyer.lawyer && Lawyer.isProsecutor;
+                case RoleId.Pursuer: return player == Pursuer.pursuer;
+                case RoleId.Witch: return player == Witch.witch;
+                case RoleId.Ninja: return player == Ninja.ninja;
+                case RoleId.Thief: return player == Thief.thief;
+                case RoleId.Bomber: return player == Bomber.bomber;
+                case RoleId.Yoyo: return player == Yoyo.yoyo;
+                case RoleId.Trapper: return player == Trapper.trapper;
+                default: return false;
+            }
+        }
     }
 }

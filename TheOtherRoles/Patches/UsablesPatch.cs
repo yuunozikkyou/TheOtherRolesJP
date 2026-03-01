@@ -118,11 +118,15 @@ namespace TheOtherRoles.Patches {
             
             if (__instance.name.StartsWith("JackInTheBoxVent_")) {
                 __instance.SetButtons(isEnter && canMoveInVents);
-                MessageWriter writer = AmongUsClient.Instance.StartRpc(CachedPlayer.LocalPlayer.PlayerControl.NetId, (byte)CustomRPC.UseUncheckedVent, Hazel.SendOption.Reliable);
+                MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(
+                    CachedPlayer.LocalPlayer.PlayerControl.NetId,
+                    (byte)CustomRPC.UseUncheckedVent,
+                    Hazel.SendOption.Reliable,
+                    -1);
                 writer.WritePacked(__instance.Id);
                 writer.Write(CachedPlayer.LocalPlayer.PlayerId);
                 writer.Write(isEnter ? byte.MaxValue : (byte)0);
-                writer.EndMessage();
+                AmongUsClient.Instance.FinishRpcImmediately(writer);
                 RPCProcedure.useUncheckedVent(__instance.Id, CachedPlayer.LocalPlayer.PlayerId, isEnter ? byte.MaxValue : (byte)0);
                 SoundEffectsManager.play("tricksterUseBoxVent");
                 return false;

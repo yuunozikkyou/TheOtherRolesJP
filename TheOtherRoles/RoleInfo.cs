@@ -30,13 +30,16 @@ namespace TheOtherRoles
             this.isModifier = isModifier;
         }
 
+        public static readonly Dictionary<RoleId, RoleInfo> roleInfoById = new Dictionary<RoleId, RoleInfo>();
+        private static readonly Dictionary<byte, bool> lastHadCustomRoleByPlayerId = new Dictionary<byte, bool>();
+
         public static RoleInfo jester = new RoleInfo("ジェスター", Jester.color, "投票で吊られよう", "投票で吊られよう", RoleId.Jester, true);
-        public static RoleInfo mayor = new RoleInfo("メイヤー", Mayor.color, "不思議な力によりあなたの票が多くカウントされる!!", "あなたの票は多くカウントされる", RoleId.Mayor);
+        public static RoleInfo mayor = new RoleInfo("メイヤー", Mayor.color, "投票の力でクルーを勝利に導こう", "投票数を増やす", RoleId.Mayor);
         public static RoleInfo portalmaker = new RoleInfo("ポータルメーカー", Portalmaker.color, "ポータルを設置してクルーの役に立とう", "ポータルを作成しよう", RoleId.Portalmaker);
-        public static RoleInfo engineer = new RoleInfo("エンジニア",  Engineer.color, "船内の重要なシステムを維持しよう", "船を修理する", RoleId.Engineer);
+        public static RoleInfo engineer = new RoleInfo("エンジニア",  Engineer.color, "船内のシステムを修復しよう！", "船を修理する", RoleId.Engineer);
         public static RoleInfo sheriff = new RoleInfo("シェリフ", Sheriff.color, "<color=#FF1919FF>人外</color>をぶち殺そう", "人外を殺す", RoleId.Sheriff);
         public static RoleInfo deputy = new RoleInfo("代理人", Sheriff.color, "<color=#FF1919FF>インポスター</color>に手錠をかけよう", "インポスターに手錠をかける", RoleId.Deputy);
-        public static RoleInfo lighter = new RoleInfo("ライター", Lighter.color, "あなたの光は決して消えない", "あなたの光は決して消えない", RoleId.Lighter);
+        public static RoleInfo lighter = new RoleInfo("ライター", Lighter.color, "あなたの光は決して消えない...", "あなたの光は決して消えない", RoleId.Lighter);
         public static RoleInfo godfather = new RoleInfo("ゴットファーザー", Godfather.color, "すべてのクルーを殺害しよう", "すべてのクルーを殺害しよう", RoleId.Godfather);
         public static RoleInfo mafioso = new RoleInfo("マフィア", Mafioso.color, "<color=#FF1919FF>マフィア</color>と協力して、クルーをキルしよう", "すべてのクルーを殺害しよう", RoleId.Mafioso);
         public static RoleInfo janitor = new RoleInfo("ジャニター", Janitor.color, "死体を隠して <color=#FF1919FF>マフィア</color> と協力する", "死体を隠す", RoleId.Janitor);
@@ -50,8 +53,8 @@ namespace TheOtherRoles
         public static RoleInfo bountyHunter = new RoleInfo("バウンティーハンター", BountyHunter.color, "賞金首を狙おう", "賞金首を狙おう", RoleId.BountyHunter);
         public static RoleInfo detective = new RoleInfo("探偵", Detective.color, "足跡を調べて <color=#FF1919FF>人外</color> を見つけよう", "足跡を調べる", RoleId.Detective);
         public static RoleInfo timeMaster = new RoleInfo("タイムマスター", TimeMaster.color, "タイムシールドを使って身を守ろう...", "タイムシールドを使う", RoleId.TimeMaster);
-        public static RoleInfo medic = new RoleInfo("メディック", Medic.color, "盾で誰かを守る", "盾で誰かを守る", RoleId.Medic);
-        public static RoleInfo madmate = new RoleInfo("マッドメイト",Madmate.color,"インポスターの手助けをしよう", "インポスターの手助けをする" ,RoleId.Madmate);
+        public static RoleInfo medic = new RoleInfo("メディック", Medic.color, "盾でクルーを守ろう！", "盾で誰かを守る", RoleId.Medic);
+        public static RoleInfo madmate = new RoleInfo("マッドメイト",Madmate.color,"インポスターの手助けをしよう...", "インポスターの手助けをする" ,RoleId.Madmate);
         public static RoleInfo swapper = new RoleInfo("スワッパー", Swapper.color, "<color=#FF1919FF>人外</color> を追放するために票を交換しよう", "投票を入れ替える", RoleId.Swapper);
         public static RoleInfo seer = new RoleInfo("シーア", Seer.color, "誰かが死んだのを見た...", "クルーが死ぬのを見る", RoleId.Seer);
         public static RoleInfo hacker = new RoleInfo("ハッカー", Hacker.color, "<color=#FF1919FF>人外</color> を見つけるためにシステムをハックする", "ハックしてインポスターを見つけよう", RoleId.Hacker);
@@ -74,8 +77,8 @@ namespace TheOtherRoles
         public static RoleInfo crewmate = new RoleInfo("クルーメイト", Color.white, "インポスターを探しながら\nタスクを終えよう", "インポスターを探して\nタスクを終わらせる", RoleId.Crewmate);
         public static RoleInfo witch = new RoleInfo("ウィッチ", Witch.color, "クルーに魔法をかけよう", "クルーに魔法をかける", RoleId.Witch);
         public static RoleInfo ninja = new RoleInfo("ニンジャ", Ninja.color, "クルーを驚かせてキルをしよう", "クルーを驚かせてキルをする", RoleId.Ninja);
-        public static RoleInfo thief = new RoleInfo("シーフ", Thief.color, "キラーを1人キルして役職を奪おう", "キラーの役職を奪う", RoleId.Thief, true);
-        public static RoleInfo bomber = new RoleInfo("ボンバー", Bomber.color, "船を爆発させよう!!", "爆発させる", RoleId.Bomber);
+        public static RoleInfo thief = new RoleInfo("シーフ", Thief.color, "人外を1人キルして役職を奪おう", "人外の役職を奪う", RoleId.Thief, true);
+        public static RoleInfo bomber = new RoleInfo("ボンバー", Bomber.color, "船を爆発させよう!!", "船を爆発させる", RoleId.Bomber);
 
         public static RoleInfo hunter = new RoleInfo("鬼", Palette.ImpostorRed, Helpers.cs(Palette.ImpostorRed, "みーつけた!^-^"), "クルーを探し、キルをする", RoleId.Impostor);
         public static RoleInfo hunted = new RoleInfo("ハンデット", Color.white, "隠そう", "隠す", RoleId.Crewmate);
@@ -163,6 +166,12 @@ namespace TheOtherRoles
             shifter
         };
 
+        static RoleInfo() {
+            foreach (var info in allRoleInfos) {
+                if (!roleInfoById.ContainsKey(info.roleId)) roleInfoById.Add(info.roleId, info);
+            }
+        }
+
         public static List<RoleInfo> getRoleInfoForPlayer(PlayerControl p, bool showModifier = true) {
             List<RoleInfo> infos = new List<RoleInfo>();
             if (p == null) return infos;
@@ -188,52 +197,72 @@ namespace TheOtherRoles
 
             int count = infos.Count;  // Save count after modifiers are added so that the role count can be checked
 
-            // Special roles
-            if (p == Madmate.madmate) infos.Add(madmate);
-            if (p == Jester.jester) infos.Add(jester);
-            if (p == Mayor.mayor) infos.Add(mayor);
-            if (p == Portalmaker.portalmaker) infos.Add(portalmaker);
-            if (p == Engineer.engineer) infos.Add(engineer);
-            if (p == Sheriff.sheriff || p == Sheriff.formerSheriff) infos.Add(sheriff);
-            if (p == Deputy.deputy) infos.Add(deputy);
-            if (p == Lighter.lighter) infos.Add(lighter);
-            if (p == Godfather.godfather) infos.Add(godfather);
-            if (p == Mafioso.mafioso) infos.Add(mafioso);
-            if (p == Janitor.janitor) infos.Add(janitor);
-            if (p == Morphling.morphling) infos.Add(morphling);
-            if (p == Camouflager.camouflager) infos.Add(camouflager);
-            if (p == Vampire.vampire) infos.Add(vampire);
-            if (p == Eraser.eraser) infos.Add(eraser);
-            if (p == Trickster.trickster) infos.Add(trickster);
-            if (p == Cleaner.cleaner) infos.Add(cleaner);
-            if (p == Warlock.warlock) infos.Add(warlock);
-            if (p == Witch.witch) infos.Add(witch);
-            if (p == Ninja.ninja) infos.Add(ninja);
-            if (p == Bomber.bomber) infos.Add(bomber);
-            if (p == Yoyo.yoyo) infos.Add(yoyo);
-            if (p == Detective.detective) infos.Add(detective);
-            if (p == TimeMaster.timeMaster) infos.Add(timeMaster);
-            if (p == Medic.medic) infos.Add(medic);
-            if (p == Swapper.swapper) infos.Add(swapper);
-            if (p == Seer.seer) infos.Add(seer);
-            if (p == Hacker.hacker) infos.Add(hacker);
-            if (p == Tracker.tracker) infos.Add(tracker);
-            if (p == Snitch.snitch) infos.Add(snitch);
-            if (p == Jackal.jackal || (Jackal.formerJackals != null && Jackal.formerJackals.Any(x => x.PlayerId == p.PlayerId))) infos.Add(jackal);
-            if (p == Sidekick.sidekick) infos.Add(sidekick);
-            if (p == Spy.spy) infos.Add(spy);
-            if (p == SecurityGuard.securityGuard) infos.Add(securityGuard);
-            if (p == Arsonist.arsonist) infos.Add(arsonist);
-            if (p == Guesser.niceGuesser) infos.Add(goodGuesser);
-            if (p == Guesser.evilGuesser) infos.Add(badGuesser);
-            if (p == BountyHunter.bountyHunter) infos.Add(bountyHunter);
-            if (p == Vulture.vulture) infos.Add(vulture);
-            if (p == Medium.medium) infos.Add(medium);
-            if (p == Lawyer.lawyer && !Lawyer.isProsecutor) infos.Add(lawyer);
-            if (p == Lawyer.lawyer && Lawyer.isProsecutor) infos.Add(prosecutor);
-            if (p == Trapper.trapper) infos.Add(trapper);
-            if (p == Pursuer.pursuer) infos.Add(pursuer);
-            if (p == Thief.thief) infos.Add(thief);
+            if (RPCProcedure.roleIdByPlayerId.TryGetValue(p.PlayerId, out var roleIdFromRpc)) {
+                if (roleInfoById.TryGetValue(roleIdFromRpc, out var infoFromId)) {
+                    infos.Add(infoFromId);
+                }
+            }
+
+            // Special roles - use helper method for more reliable role detection
+            if (infos.Count == count) {
+            if (p.hasRole(RoleId.Madmate)) infos.Add(madmate);
+            if (p.hasRole(RoleId.Jester)) infos.Add(jester);
+            if (p.hasRole(RoleId.Mayor)) infos.Add(mayor);
+            if (p.hasRole(RoleId.Portalmaker)) infos.Add(portalmaker);
+            if (p.hasRole(RoleId.Engineer)) infos.Add(engineer);
+            if (p.hasRole(RoleId.Sheriff)) infos.Add(sheriff);
+            if (p.hasRole(RoleId.Deputy)) infos.Add(deputy);
+            if (p.hasRole(RoleId.Lighter)) infos.Add(lighter);
+            if (p.hasRole(RoleId.Godfather)) infos.Add(godfather);
+            if (p.hasRole(RoleId.Mafioso)) infos.Add(mafioso);
+            if (p.hasRole(RoleId.Janitor)) infos.Add(janitor);
+            if (p.hasRole(RoleId.Morphling)) infos.Add(morphling);
+            if (p.hasRole(RoleId.Camouflager)) infos.Add(camouflager);
+            if (p.hasRole(RoleId.Vampire)) infos.Add(vampire);
+            if (p.hasRole(RoleId.Eraser)) infos.Add(eraser);
+            if (p.hasRole(RoleId.Trickster)) infos.Add(trickster);
+            if (p.hasRole(RoleId.Cleaner)) infos.Add(cleaner);
+            if (p.hasRole(RoleId.Warlock)) infos.Add(warlock);
+            if (p.hasRole(RoleId.Witch)) infos.Add(witch);
+            if (p.hasRole(RoleId.Ninja)) infos.Add(ninja);
+            if (p.hasRole(RoleId.Bomber)) infos.Add(bomber);
+            if (p.hasRole(RoleId.Yoyo)) infos.Add(yoyo);
+            if (p.hasRole(RoleId.Detective)) infos.Add(detective);
+            if (p.hasRole(RoleId.TimeMaster)) infos.Add(timeMaster);
+            if (p.hasRole(RoleId.Medic)) infos.Add(medic);
+            if (p.hasRole(RoleId.Swapper)) infos.Add(swapper);
+            if (p.hasRole(RoleId.Seer)) infos.Add(seer);
+            if (p.hasRole(RoleId.Hacker)) infos.Add(hacker);
+            if (p.hasRole(RoleId.Tracker)) infos.Add(tracker);
+            if (p.hasRole(RoleId.Snitch)) infos.Add(snitch);
+            if (p.hasRole(RoleId.Jackal)) infos.Add(jackal);
+            if (p.hasRole(RoleId.Sidekick)) infos.Add(sidekick);
+            if (p.hasRole(RoleId.Spy)) infos.Add(spy);
+            if (p.hasRole(RoleId.SecurityGuard)) infos.Add(securityGuard);
+            if (p.hasRole(RoleId.Arsonist)) infos.Add(arsonist);
+            if (p.hasRole(RoleId.NiceGuesser)) infos.Add(goodGuesser);
+            if (p.hasRole(RoleId.EvilGuesser)) infos.Add(badGuesser);
+            if (p.hasRole(RoleId.BountyHunter)) infos.Add(bountyHunter);
+            if (p.hasRole(RoleId.Vulture)) infos.Add(vulture);
+            if (p.hasRole(RoleId.Medium)) infos.Add(medium);
+            if (p.hasRole(RoleId.Lawyer)) infos.Add(lawyer);
+            if (p.hasRole(RoleId.Prosecutor)) infos.Add(prosecutor);
+            if (p.hasRole(RoleId.Trapper)) infos.Add(trapper);
+            if (p.hasRole(RoleId.Pursuer)) infos.Add(pursuer);
+            if (p.hasRole(RoleId.Thief)) infos.Add(thief);
+            }
+
+            // Debug: Check if any role was found
+            bool hasCustom = infos.Count > count;
+            bool shouldLog = !lastHadCustomRoleByPlayerId.TryGetValue(p.PlayerId, out var last) || last != hasCustom;
+            if (shouldLog) {
+                lastHadCustomRoleByPlayerId[p.PlayerId] = hasCustom;
+                if (hasCustom) {
+                    System.Console.WriteLine($"[TOR DEBUG] Found role for player {p?.Data?.PlayerName}: {infos.Last().name}");
+                } else {
+                    System.Console.WriteLine($"[TOR DEBUG] No custom role found for player {p?.Data?.PlayerName}, using default role");
+                }
+            }
 
             // Default roles (just impostor, just crewmate, or hunter / hunted for hide n seek, prop hunt prop ...
             if (infos.Count == count) {

@@ -442,8 +442,8 @@ public static CustomOption madmateCanDieToSheriff;
             neutralRolesCountMax = CustomOption.Create(303, Types.General, cs(new Color(204f / 255f, 204f / 255f, 0, 1f), "最大大歳陣営数"), 15f, 0f, 15f, 1f);
             impostorRolesCountMin = CustomOption.Create(304, Types.General, cs(new Color(204f / 255f, 204f / 255f, 0, 1f), "最小インポスター役職数"), 15f, 0f, 15f, 1f);
             impostorRolesCountMax = CustomOption.Create(305, Types.General, cs(new Color(204f / 255f, 204f / 255f, 0, 1f), "最大インポスター役職数"), 15f, 0f, 15f, 1f);
-            modifiersCountMin = CustomOption.Create(306, Types.General, cs(new Color(204f / 255f, 204f / 255f, 0, 1f), "最大属性数"), 15f, 0f, 15f, 1f);
-            modifiersCountMax = CustomOption.Create(307, Types.General, cs(new Color(204f / 255f, 204f / 255f, 0, 1f), "Maximum Modifiers"), 15f, 0f, 15f, 1f);
+            modifiersCountMin = CustomOption.Create(306, Types.General, cs(new Color(204f / 255f, 204f / 255f, 0, 1f), "最小属性数"), 15f, 0f, 15f, 1f);
+            modifiersCountMax = CustomOption.Create(307, Types.General, cs(new Color(204f / 255f, 204f / 255f, 0, 1f), "最大属性数"), 15f, 0f, 15f, 1f);
             crewmateRolesFill = CustomOption.Create(308, Types.General, cs(new Color(204f / 255f, 204f / 255f, 0, 1f), "クルーの役職をうめる\n(最小/最大関係なし"), false);
 
             mafiaSpawnRate = CustomOption.Create(18, Types.Impostor, cs(Janitor.color, "マフィア"), rates, null, true);
@@ -464,7 +464,7 @@ public static CustomOption madmateCanDieToSheriff;
 
             eraserSpawnRate = CustomOption.Create(230, Types.Impostor, cs(Eraser.color, "イレイサー"), rates, null, true);
             eraserCooldown = CustomOption.Create(231, Types.Impostor, "イレイサーのクールダウン", 30f, 10f, 120f, 5f, eraserSpawnRate);
-            eraserCanEraseAnyone = CustomOption.Create(232, Types.Impostor, "イレイサーはどの役職でも消せる", false, eraserSpawnRate);
+            eraserCanEraseAnyone = CustomOption.Create(232, Types.Impostor, "どの役職でも消せるか", false, eraserSpawnRate);
 
             tricksterSpawnRate = CustomOption.Create(250, Types.Impostor, cs(Trickster.color, "トリックスター"), rates, null, true);
             tricksterPlaceBoxCooldown = CustomOption.Create(251, Types.Impostor, "トリックスターボックスのクールダウン", 10f, 2.5f, 30f, 2.5f, tricksterSpawnRate);
@@ -479,19 +479,19 @@ public static CustomOption madmateCanDieToSheriff;
             warlockRootTime = CustomOption.Create(272, Types.Impostor, "魔術師のルートタイム", 5f, 0f, 15f, 1f, warlockSpawnRate);
 
             bountyHunterSpawnRate = CustomOption.Create(320, Types.Impostor, cs(BountyHunter.color, "バウンティーハンター"), rates, null, true);
-            bountyHunterBountyDuration = CustomOption.Create(321, Types.Impostor, "ターゲットが変更される時間",  60f, 10f, 180f, 10f, bountyHunterSpawnRate);
-            bountyHunterReducedCooldown = CustomOption.Create(322, Types.Impostor, "ターゲットをキルした時のクールダウン", 2.5f, 0f, 30f, 2.5f, bountyHunterSpawnRate);
-            bountyHunterPunishmentTime = CustomOption.Create(323, Types.Impostor, "ターゲット以外をキルした時のクールダウン", 20f, 0f, 60f, 2.5f, bountyHunterSpawnRate);
+            bountyHunterBountyDuration = CustomOption.Create(321, Types.Impostor, "ターゲットが変更されるまでの時間",  60f, 10f, 180f, 10f, bountyHunterSpawnRate);
+            bountyHunterReducedCooldown = CustomOption.Create(322, Types.Impostor, "ターゲットをキル時のクールダウン", 2.5f, 0f, 30f, 2.5f, bountyHunterSpawnRate);
+            bountyHunterPunishmentTime = CustomOption.Create(323, Types.Impostor, "ターゲット以外をキル時のクールダウン", 20f, 0f, 60f, 2.5f, bountyHunterSpawnRate);
             bountyHunterShowArrow = CustomOption.Create(324, Types.Impostor, "ターゲットに矢印を向ける", true, bountyHunterSpawnRate);
             bountyHunterArrowUpdateIntervall = CustomOption.Create(325, Types.Impostor, "矢印の更新間隔", 15f, 2.5f, 60f, 2.5f, bountyHunterShowArrow);
 
             witchSpawnRate = CustomOption.Create(370, Types.Impostor, cs(Witch.color, "ウィッチ"), rates, null, true);
-            witchCooldown = CustomOption.Create(371, Types.Impostor, "ウィッチの呪文のクールダウン", 30f, 10f, 120f, 5f, witchSpawnRate);
-            witchAdditionalCooldown = CustomOption.Create(372, Types.Impostor, "ウィッチの追加のクールダウン", 10f, 0f, 60f, 5f, witchSpawnRate);
-            witchCanSpellAnyone = CustomOption.Create(373, Types.Impostor, "ウィッチは誰にでも呪文をかけられる", false, witchSpawnRate);
+            witchCooldown = CustomOption.Create(371, Types.Impostor, "呪文のクールダウン", 30f, 10f, 120f, 5f, witchSpawnRate);
+            witchAdditionalCooldown = CustomOption.Create(372, Types.Impostor, "追加のクールダウン", 10f, 0f, 60f, 5f, witchSpawnRate);
+            witchCanSpellAnyone = CustomOption.Create(373, Types.Impostor, "誰にでも呪文をかけられる", false, witchSpawnRate);
             witchSpellCastingDuration = CustomOption.Create(374, Types.Impostor, "呪文の持続時間", 1f, 0f, 10f, 1f, witchSpawnRate);
             witchTriggerBothCooldowns = CustomOption.Create(375, Types.Impostor, "両方のクールダウンを同期", true, witchSpawnRate);
-            witchVoteSavesTargets = CustomOption.Create(376, Types.Impostor, "ウィッチの投票がすべてのターゲットを救う", true, witchSpawnRate);
+            witchVoteSavesTargets = CustomOption.Create(376, Types.Impostor, "ウィッチが吊られたらターゲットを救う", true, witchSpawnRate);
 
             ninjaSpawnRate = CustomOption.Create(380, Types.Impostor, cs(Ninja.color, "ニンジャ"), rates, null, true);
             ninjaCooldown = CustomOption.Create(381, Types.Impostor, "忍者マークのクールダウン", 30f, 10f, 120f, 5f, ninjaSpawnRate);
@@ -518,9 +518,9 @@ public static CustomOption madmateCanDieToSheriff;
 
 
             guesserSpawnRate = CustomOption.Create(310, Types.Neutral, cs(Guesser.color, "ゲッサー"), rates, null, true);
-            guesserIsImpGuesserRate = CustomOption.Create(311, Types.Neutral, "ゲッサーがインポスターの可能性", rates, guesserSpawnRate);
-            guesserNumberOfShots = CustomOption.Create(312, Types.Neutral, "ゲッサーが撃てる数", 2f, 1f, 15f, 1f, guesserSpawnRate);
-            guesserHasMultipleShotsPerMeeting = CustomOption.Create(313, Types.Neutral, "ゲーザーは1回のミーティングにつき複数回の推測が可能", false, guesserSpawnRate);
+            guesserIsImpGuesserRate = CustomOption.Create(311, Types.Neutral, "インポスター", rates, guesserSpawnRate);
+            guesserNumberOfShots = CustomOption.Create(312, Types.Neutral, "撃てる数", 2f, 1f, 15f, 1f, guesserSpawnRate);
+            guesserHasMultipleShotsPerMeeting = CustomOption.Create(313, Types.Neutral, "1回の会議で複数回の推測が可能", false, guesserSpawnRate);
             guesserKillsThroughShield  = CustomOption.Create(315, Types.Neutral, "メディックシールドを無視した推測", true, guesserSpawnRate);
             guesserEvilCanKillSpy  = CustomOption.Create(316, Types.Neutral, "ゲッサーは、スパイを推測できる", true, guesserSpawnRate);
             guesserSpawnBothRate = CustomOption.Create(317, Types.Neutral, "ゲッサーのスポーン確率", rates, guesserSpawnRate);

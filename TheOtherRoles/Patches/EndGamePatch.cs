@@ -68,7 +68,9 @@ namespace TheOtherRoles.Patches {
         private static GameOverReason gameOverReason;
         public static void Prefix(AmongUsClient __instance, [HarmonyArgument(0)]ref EndGameResult endGameResult) {
             gameOverReason = endGameResult.GameOverReason;
-            if ((int)endGameResult.GameOverReason >= 10) endGameResult.GameOverReason = GameOverReason.ImpostorByKill;
+            // Normalize custom reasons (>= 10) back to a standard impostor kill reason.
+            if ((int)endGameResult.GameOverReason >= 10)
+                endGameResult.GameOverReason = (GameOverReason)3; // ImpostorByKill
 
             // Reset zoomed out ghosts
             Helpers.toggleZoom(reset: true);
@@ -464,7 +466,7 @@ namespace TheOtherRoles.Patches {
             if (HideNSeek.isHideNSeekGM && !HideNSeek.taskWinPossible || PropHunt.isPropHuntGM) return false;
             if (GameData.Instance.TotalTasks > 0 && GameData.Instance.TotalTasks <= GameData.Instance.CompletedTasks) {
                 //__instance.enabled = false;
-                GameManager.Instance.RpcEndGame(GameOverReason.HumansByTask, false);
+                GameManager.Instance.RpcEndGame((GameOverReason)1, false); // CrewmatesByTask
                 return true;
             }
             return false;
@@ -506,13 +508,13 @@ namespace TheOtherRoles.Patches {
                 GameOverReason endReason;
                 switch (GameData.LastDeathReason) {
                     case DeathReason.Exile:
-                        endReason = GameOverReason.ImpostorByVote;
+                        endReason = (GameOverReason)2; // ImpostorByVote
                         break;
                     case DeathReason.Kill:
-                        endReason = GameOverReason.ImpostorByKill;
+                        endReason = (GameOverReason)3; // ImpostorByKill
                         break;
                     default:
-                        endReason = GameOverReason.ImpostorByVote;
+                        endReason = (GameOverReason)2; // ImpostorByVote
                         break;
                 }
                 GameManager.Instance.RpcEndGame(endReason, false);
@@ -524,16 +526,16 @@ namespace TheOtherRoles.Patches {
         private static bool CheckAndEndGameForCrewmateWin(ShipStatus __instance, PlayerStatistics statistics) {
             if (HideNSeek.isHideNSeekGM && HideNSeek.timer <= 0 && !HideNSeek.isWaitingTimer) {
                 //__instance.enabled = false;
-                GameManager.Instance.RpcEndGame(GameOverReason.HumansByVote, false);
+                GameManager.Instance.RpcEndGame((GameOverReason)0, false); // CrewmatesByVote
                 return true;
             }
             if (PropHunt.isPropHuntGM && PropHunt.timer <= 0 && PropHunt.timerRunning) {
-                GameManager.Instance.RpcEndGame(GameOverReason.HumansByVote, false);
+                GameManager.Instance.RpcEndGame((GameOverReason)0, false); // CrewmatesByVote
                 return true;
             }
             if (statistics.TeamImpostorsAlive == 0 && statistics.TeamJackalAlive == 0) {
                 //__instance.enabled = false;
-                GameManager.Instance.RpcEndGame(GameOverReason.HumansByVote, false);
+                GameManager.Instance.RpcEndGame((GameOverReason)0, false); // CrewmatesByVote
                 return true;
             }
             return false;
@@ -541,7 +543,7 @@ namespace TheOtherRoles.Patches {
 
         private static void EndGameForSabotage(ShipStatus __instance) {
             //__instance.enabled = false;
-            GameManager.Instance.RpcEndGame(GameOverReason.ImpostorBySabotage, false);
+            GameManager.Instance.RpcEndGame((GameOverReason)4, false); // ImpostorBySabotage
             return;
         }
 

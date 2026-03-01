@@ -29,7 +29,7 @@ $@"開発者 <color=#FCCE03FF>Eisbison</color>, <color=#FCCE03FF>Thunderstorm584
 
 
         public static string contributorsCredentials =
-$@"<size=60%> {Helpers.GradientColorText("ff4500", "ffd700", "Smeggy")}さんと<color=#ffff00>TOHY開発者</color>様と{Helpers.GradientColorText("C71585", "B22222", "めーぷる")}様と<color=#4169e1>KY</color>様に感謝!!</color></size>";
+$@"<size=60%> {Helpers.GradientColorText("ff4500", "ffd700", "Smeggy")}様と<color=#ffff00>TOHY開発者</color>様と{Helpers.GradientColorText("C71585", "B22222", "めーぷる")}様と<color=#4169e1>KY</color>様に感謝!!</color></size>";
 
         [HarmonyPatch(typeof(PingTracker), nameof(PingTracker.Update))]
         internal static class PingTrackerPatch

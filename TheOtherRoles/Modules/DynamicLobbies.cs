@@ -45,7 +45,7 @@ namespace TheOtherRoles.Modules {
         }
         [HarmonyPatch(typeof(InnerNetClient), nameof(InnerNetClient.HostGame))]
         public static class InnerNetClientHostPatch {
-            public static void Prefix(InnerNet.InnerNetClient __instance, [HarmonyArgument(0)] GameOptionsData settings) {
+            public static void Prefix(InnerNet.InnerNetClient __instance, [HarmonyArgument(0)] object settings) {
                 int maxPlayers;
                 try {
                     maxPlayers = GameOptionsManager.Instance.currentNormalGameOptions.MaxPlayers;
@@ -54,11 +54,25 @@ namespace TheOtherRoles.Modules {
                     maxPlayers = 15;
                 }
                 DynamicLobbies.LobbyLimit = maxPlayers;
-                settings.MaxPlayers = 15; // Force 15 Player Lobby on Server
                 DataManager.Settings.Multiplayer.ChatMode = InnerNet.QuickChatModes.FreeChatOrQuickChat;
+
+                TrySetMaxPlayers(settings, 15); // Force 15 Player Lobby on Server
             }
-            public static void Postfix(InnerNet.InnerNetClient __instance, [HarmonyArgument(0)] GameOptionsData settings) {
-                settings.MaxPlayers = DynamicLobbies.LobbyLimit;
+
+            public static void Postfix(InnerNet.InnerNetClient __instance, [HarmonyArgument(0)] object settings) {
+                TrySetMaxPlayers(settings, DynamicLobbies.LobbyLimit);
+            }
+
+            private static void TrySetMaxPlayers(object settings, int value) {
+                if (settings == null) return;
+                var type = settings.GetType();
+                var prop = type.GetProperty("MaxPlayers");
+                if (prop == null || !prop.CanWrite) return;
+                try {
+                    prop.SetValue(settings, value);
+                } catch {
+                    // ignore if reflection fails
+                }
             }
         }
         [HarmonyPatch(typeof(InnerNetClient), nameof(InnerNetClient.JoinGame))]
