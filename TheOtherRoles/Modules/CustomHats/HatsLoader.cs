@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Net.Http;
 using System.IO;
 using System.Text.Json;
 using BepInEx.Unity.IL2CPP.Utils;
@@ -12,10 +13,12 @@ namespace TheOtherRoles.Modules.CustomHats;
 public class HatsLoader : MonoBehaviour
 {
     private bool isRunning;
+    private static readonly HttpClient Http = new HttpClient();
 
     public void FetchHats()
     {
         if (isRunning) return;
+        TheOtherRolesPlugin.Logger.LogMessage($"[TOR DEBUG] HatsLoader active (HttpClient download) dir={HatsDirectory}");
         this.StartCoroutine(CoFetchHats());
     }
 
@@ -66,40 +69,31 @@ public class HatsLoader : MonoBehaviour
 
     private static IEnumerator CoDownloadHatAsset(string fileName)
     {
-        var www = new UnityWebRequest();
-        www.SetMethod(UnityWebRequest.UnityWebRequestMethod.Get);
         fileName = fileName.Replace(" ", "%20");
         TheOtherRolesPlugin.Logger.LogMessage($"downloading hat: {fileName}");
-        www.SetUrl($"{RepositoryUrl}/hats/{fileName}");
-        www.downloadHandler = new DownloadHandlerBuffer();
-        var operation = www.SendWebRequest();
-
-        while (!operation.isDone)
-        {
-            yield return new WaitForEndOfFrame();
-        }
-
-        if (www.isNetworkError || www.isHttpError)
-        {
-            TheOtherRolesPlugin.Logger.LogError(www.error);
-            yield break;
-        }
+        TheOtherRolesPlugin.Logger.LogMessage($"[TOR DEBUG] HatsLoader downloading via HttpClient: {fileName}");
+        var url = $"{RepositoryUrl}/hats/{fileName}";
 
         var filePath = Path.Combine(HatsDirectory, fileName);
         filePath = filePath.Replace("%20", " ");
-        var persistTask = File.WriteAllBytesAsync(filePath, www.downloadHandler.data);
-        while (!persistTask.IsCompleted)
-        {
-            if (persistTask.Exception != null)
-            {
-                TheOtherRolesPlugin.Logger.LogError(persistTask.Exception.Message);
-                break;
-            }
+        var tmpPath = filePath + ".download";
+        if (File.Exists(tmpPath)) File.Delete(tmpPath);
 
+        var task = Http.GetByteArrayAsync(url);
+        while (!task.IsCompleted)
+        {
             yield return new WaitForEndOfFrame();
         }
 
-        www.downloadHandler.Dispose();
-        www.Dispose();
+        if (task.Exception != null)
+        {
+            TheOtherRolesPlugin.Logger.LogError(task.Exception.Message);
+            yield break;
+        }
+
+        byte[] bytes = task.Result;
+        File.WriteAllBytes(tmpPath, bytes);
+        if (File.Exists(filePath)) File.Delete(filePath);
+        File.Move(tmpPath, filePath);
     }
 }

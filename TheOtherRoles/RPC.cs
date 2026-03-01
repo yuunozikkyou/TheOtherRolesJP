@@ -1355,10 +1355,211 @@ namespace TheOtherRoles
     [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.HandleRpc))]
     class RPCHandlerPatch
     {
-        static void Postfix([HarmonyArgument(0)]byte callId, [HarmonyArgument(1)]MessageReader reader)
+        private static bool IsCustomRpc(byte callId)
+        {
+            return callId >= (byte)CustomRPC.ResetVaribles;
+        }
+
+        [HarmonyPrefix]
+        static bool Prefix([HarmonyArgument(0)] byte callId, [HarmonyArgument(1)] MessageReader reader)
+        {
+            if (!IsCustomRpc(callId)) return true;
+
+            try
+            {
+                HandleCustomRpc(callId, reader);
+            }
+            catch (Exception e)
+            {
+                if (TheOtherRolesPlugin.DebugMode != null && TheOtherRolesPlugin.DebugMode.Value == "true")
+                {
+                    int pos = -1;
+                    int len = -1;
+                    try { pos = (int)reader.Position; len = (int)reader.Length; } catch { }
+                    TheOtherRolesPlugin.Logger.LogError($"[TOR DEBUG] HandleRpc Prefix exception callId={callId} pos={pos} len={len} err={e}");
+                }
+            }
+
+            return false;
+        }
+
+        private static void HandleCustomRpc(byte callId, MessageReader reader)
         {
             byte packetId = callId;
             switch (packetId) {
+
+            // Main Controls
+
+            case (byte)CustomRPC.ResetVaribles:
+                RPCProcedure.resetVariables();
+                break;
+            case (byte)CustomRPC.ShareOptions:
+                RPCProcedure.HandleShareOptions(reader.ReadByte(), reader);
+                break;
+            case (byte)CustomRPC.ForceEnd:
+                RPCProcedure.forceEnd();
+                break; 
+            case (byte)CustomRPC.WorkaroundSetRoles:
+                RPCProcedure.workaroundSetRoles(reader.ReadByte(), reader);
+                break;
+            case (byte)CustomRPC.SetRole:
+                byte roleId = reader.ReadByte();
+                byte playerId = reader.ReadByte();
+                RPCProcedure.setRole(roleId, playerId);
+                break;
+            case (byte)CustomRPC.SetModifier:
+                byte modifierId = reader.ReadByte();
+                byte pId = reader.ReadByte();
+                byte flag = reader.ReadByte();
+                RPCProcedure.setModifier(modifierId, pId, flag);
+                break;
+            case (byte)CustomRPC.VersionHandshake:
+                byte major = reader.ReadByte();
+                byte minor = reader.ReadByte();
+                byte patch = reader.ReadByte();
+                float timer = reader.ReadSingle();
+                if (!AmongUsClient.Instance.AmHost && timer >= 0f) GameStartManagerPatch.timer = timer;
+                int versionOwnerId = reader.ReadPackedInt32();
+                byte revision = 0xFF;
+                Guid guid;
+                if (reader.Length - reader.Position >= 17) { // enough bytes left to read
+                    revision = reader.ReadByte();
+                    // GUID
+                    byte[] gbytes = reader.ReadBytes(16);
+                    guid = new Guid(gbytes);
+                } else {
+                    guid = new Guid(new byte[16]);
+                }
+                RPCProcedure.versionHandshake(major, minor, patch, revision == 0xFF ? -1 : revision, guid, versionOwnerId);
+                break;
+            case (byte)CustomRPC.UseUncheckedVent:
+                int ventId = reader.ReadPackedInt32();
+                byte ventingPlayer = reader.ReadByte();
+                byte isEnter = reader.ReadByte();
+                RPCProcedure.useUncheckedVent(ventId, ventingPlayer, isEnter);
+                break;
+            case (byte)CustomRPC.UncheckedMurderPlayer:
+                byte source = reader.ReadByte();
+                byte target = reader.ReadByte();
+                byte showAnimation = reader.ReadByte();
+                RPCProcedure.uncheckedMurderPlayer(source, target, showAnimation);
+                break;
+            case (byte)CustomRPC.UncheckedExilePlayer:
+                byte exileTarget = reader.ReadByte();
+                RPCProcedure.uncheckedExilePlayer(exileTarget);
+                break;
+            case (byte)CustomRPC.UncheckedCmdReportDeadBody:
+                byte reportSource = reader.ReadByte();
+                byte reportTarget = reader.ReadByte();
+                RPCProcedure.uncheckedCmdReportDeadBody(reportSource, reportTarget);
+                break;
+            case (byte)CustomRPC.DynamicMapOption:
+                byte mapId = reader.ReadByte();
+                RPCProcedure.dynamicMapOption(mapId);
+                break;
+            case (byte)CustomRPC.SetGameStarting:
+                RPCProcedure.setGameStarting();
+                break;
+
+            // Role functionality
+
+            case (byte)CustomRPC.EngineerFixLights:
+                RPCProcedure.engineerFixLights();
+                break;
+            case (byte)CustomRPC.EngineerFixSubmergedOxygen:
+                RPCProcedure.engineerFixSubmergedOxygen();
+                break;
+            case (byte)CustomRPC.EngineerUsedRepair:
+                RPCProcedure.engineerUsedRepair();
+                break;
+            case (byte)CustomRPC.CleanBody:
+                RPCProcedure.cleanBody(reader.ReadByte(), reader.ReadByte());
+                break;
+            case (byte)CustomRPC.TimeMasterRewindTime:
+                RPCProcedure.timeMasterRewindTime();
+                break;
+            case (byte)CustomRPC.TimeMasterShield:
+                RPCProcedure.timeMasterShield();
+                break;
+            case (byte)CustomRPC.MedicSetShielded:
+                RPCProcedure.medicSetShielded(reader.ReadByte());
+                break;
+            case (byte)CustomRPC.ShieldedMurderAttempt:
+                RPCProcedure.shieldedMurderAttempt();
+                break;
+            case (byte)CustomRPC.ShifterShift:
+                RPCProcedure.shifterShift(reader.ReadByte());
+                break;
+            case (byte)CustomRPC.SwapperSwap:
+                byte playerId1 = reader.ReadByte();
+                byte playerId2 = reader.ReadByte();
+                RPCProcedure.swapperSwap(playerId1, playerId2);
+                break;
+            case (byte)CustomRPC.MayorSetVoteTwice:
+                Mayor.voteTwice = reader.ReadBoolean();
+                break;
+            case (byte)CustomRPC.MorphlingMorph:
+                RPCProcedure.morphlingMorph(reader.ReadByte());
+                break;
+            case (byte)CustomRPC.CamouflagerCamouflage:
+                RPCProcedure.camouflagerCamouflage();
+                break;
+            case (byte)CustomRPC.VampireSetBitten:
+                byte bittenId = reader.ReadByte();
+                byte reset = reader.ReadByte();
+                RPCProcedure.vampireSetBitten(bittenId, reset);
+                break;
+            case (byte)CustomRPC.PlaceGarlic:
+                RPCProcedure.placeGarlic(reader.ReadBytesAndSize());
+                break;
+            case (byte)CustomRPC.TrackerUsedTracker:
+                RPCProcedure.trackerUsedTracker(reader.ReadByte());
+                break;               
+            case (byte)CustomRPC.DeputyUsedHandcuffs:
+                RPCProcedure.deputyUsedHandcuffs(reader.ReadByte());
+                break;
+            case (byte)CustomRPC.DeputyPromotes:
+                RPCProcedure.deputyPromotes();
+                break;
+            case (byte)CustomRPC.JackalCreatesSidekick:
+                RPCProcedure.jackalCreatesSidekick(reader.ReadByte());
+                break;
+            case (byte)CustomRPC.SidekickPromotes:
+                RPCProcedure.sidekickPromotes();
+                break;
+            case (byte)CustomRPC.ErasePlayerRoles:
+                byte eraseTarget = reader.ReadByte();
+                RPCProcedure.erasePlayerRoles(eraseTarget);
+                Eraser.alreadyErased.Add(eraseTarget);
+                break;
+            default:
+                break;
+            }
+        }
+
+        [HarmonyFinalizer]
+        static Exception Finalizer([HarmonyArgument(0)] byte callId, [HarmonyArgument(1)] MessageReader reader, Exception __exception)
+        {
+            if (__exception == null) return null;
+
+            if (TheOtherRolesPlugin.DebugMode != null && TheOtherRolesPlugin.DebugMode.Value == "true")
+            {
+                int pos = -1;
+                int len = -1;
+                try { pos = (int)reader.Position; len = (int)reader.Length; } catch { }
+                TheOtherRolesPlugin.Logger.LogError($"[TOR DEBUG] HandleRpc exception swallowed callId={callId} pos={pos} len={len} err={__exception}");
+            }
+
+            return null;
+        }
+
+        static void Postfix([HarmonyArgument(0)]byte callId, [HarmonyArgument(1)]MessageReader reader)
+        {
+            if (IsCustomRpc(callId)) return;
+            try
+            {
+                byte packetId = callId;
+                switch (packetId) {
 
                 // Main Controls
 
@@ -1647,11 +1848,22 @@ namespace TheOtherRoles
                     break;
 
 
-                case (byte)CustomRPC.ShareRoom:
-                    byte roomPlayer = reader.ReadByte();
-                    byte roomId = reader.ReadByte();
-                    RPCProcedure.shareRoom(roomPlayer, roomId);
-                    break;
+                    case (byte)CustomRPC.ShareRoom:
+                        byte roomPlayer = reader.ReadByte();
+                        byte roomId = reader.ReadByte();
+                        RPCProcedure.shareRoom(roomPlayer, roomId);
+                        break;
+                }
+            }
+            catch (Exception e)
+            {
+                if (TheOtherRolesPlugin.DebugMode != null && TheOtherRolesPlugin.DebugMode.Value == "true")
+                {
+                    int pos = -1;
+                    int len = -1;
+                    try { pos = (int)reader.Position; len = (int)reader.Length; } catch { }
+                    TheOtherRolesPlugin.Logger.LogError($"[TOR DEBUG] RPCHandlerPatch exception callId={callId} pos={pos} len={len} err={e}");
+                }
             }
         }
     }
